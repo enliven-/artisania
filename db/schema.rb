@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(:version => 20130607033752) do
   create_table "attribute_layers", :force => true do |t|
     t.string   "name"
     t.integer  "palette_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "attribute_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "attributes", :force => true do |t|
@@ -36,8 +37,11 @@ ActiveRecord::Schema.define(:version => 20130607033752) do
   create_table "palettes", :force => true do |t|
     t.string   "name"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "project_category_id"
+    t.integer  "attribute_layer_id"
+    t.integer  "attribute_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "product_categories", :force => true do |t|
@@ -49,18 +53,21 @@ ActiveRecord::Schema.define(:version => 20130607033752) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "product_category"
-    t.integer  "catalog"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "product_category_id"
+    t.integer  "catalog_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "product_category"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "product_category_id"
+    t.integer  "palette_id"
+    t.integer  "attribute_layer_id"
+    t.integer  "attribute_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
 end
