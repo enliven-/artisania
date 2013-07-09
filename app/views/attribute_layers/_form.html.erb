@@ -5,7 +5,7 @@
 	  <%= f.input :name %>
   </div>
 
-  <%= f.simple_fields_for :attribute do |builder| %>
+  <%= f.simple_fields_for :attributes do |builder| %>
     <%= render 'attribute_fields', :f => builder %>
   <% end %>
 

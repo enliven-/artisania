@@ -1,7 +1,7 @@
 class AttributeLayer < ActiveRecord::Base
 
 
-  attr_accessible :name
+  attr_accessible :name, :attributes_attributes
 
   belongs_to :palette
   has_many   :attributes

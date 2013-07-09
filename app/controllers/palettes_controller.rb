@@ -43,14 +43,11 @@ class PalettesController < ApplicationController
     @palette = Palette.new(params[:palette])
     @palette.project_id = session.delete(:project_id)
     session[:palette_id] = @palette.id
-    respond_to do |format|
       if @palette.save
         redirect_to new_attribute_layer_path
       else
-        format.html { render action: "new" }
-        format.json { render json: @palette.errors, status: :unprocessable_entity }
+       render action: "new" 
       end
-    end
   end
 
   # PUT /palettes/1

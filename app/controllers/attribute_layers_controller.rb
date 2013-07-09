@@ -25,7 +25,7 @@ class AttributeLayersController < ApplicationController
   # GET /attribute_layers/new.json
   def new
     @attribute_layer = AttributeLayer.new
-
+    @attribute_layer.attributes.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @attribute_layer }
@@ -43,13 +43,11 @@ class AttributeLayersController < ApplicationController
     @attribute_layer = AttributeLayer.new(params[:attribute_layer])
     @attribute_layer.palette_id = session[:palette_id]
     session[:attribute_layer_id] = @attribute_layer.id
-    respond_to do |format|
+    
       if @attribute_layer.save
         redirect_to new_attribute_path
       else
-        format.html { render action: "new" }
-        format.json { render json: @attribute_layer.errors, status: :unprocessable_entity }
-      end
+        render action: "new"
     end
   end
 
