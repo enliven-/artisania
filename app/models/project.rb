@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name, :description, :product_category
   
-  # has_one   :palette
+  has_many   :palettes, dependent: :destroy
   # has_many  :attribute_layers, :through => :palette
   # has_many  :attributes,       :through => :attribute_layers
 
