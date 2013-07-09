@@ -33,6 +33,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Token authenticatable
       # t.string :authentication_token
 
+      # Custom Columns
+      t.string :name,              :null => false, :default => ""
+      t.string :role
 
       t.timestamps
     end
