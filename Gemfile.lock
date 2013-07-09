@@ -35,6 +35,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    cocoon (1.1.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -135,6 +136,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cocoon
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
