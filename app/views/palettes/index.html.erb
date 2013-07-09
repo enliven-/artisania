@@ -1,0 +1,21 @@
+<h1>Listing palettes</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @palettes.each do |palette| %>
+  <tr>
+    <td><%= link_to 'Show', palette %></td>
+    <td><%= link_to 'Edit', edit_palette_path(palette) %></td>
+    <td><%= link_to 'Destroy', palette, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Palette', new_palette_path %>
