@@ -4,6 +4,9 @@ Artisania::Application.routes.draw do
 
 
   resources :projects
+  resources :palettes
+  resources :attribute_layers
+  resources :attributes
 
   devise_for :users
 

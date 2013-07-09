@@ -1,0 +1,21 @@
+<h1>Listing attribute_layers</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @attribute_layers.each do |attribute_layer| %>
+  <tr>
+    <td><%= link_to 'Show', attribute_layer %></td>
+    <td><%= link_to 'Edit', edit_attribute_layer_path(attribute_layer) %></td>
+    <td><%= link_to 'Destroy', attribute_layer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Attribute layer', new_attribute_layer_path %>

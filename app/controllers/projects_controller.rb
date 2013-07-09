@@ -14,7 +14,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -41,11 +40,10 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
+    session[:project_id] = @project.id
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render json: @project, status: :created, location: @project }
+        redirect_to new_palette_path
       else
         format.html { render action: "new" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
