@@ -1,0 +1,5 @@
+<%= f.input :name %>
+
+<%= f.simple_fields_for :attributes do |attr_form| %>
+	<%= render 'attributes/attribute_fields', f: attr_form %>
+<% end %>

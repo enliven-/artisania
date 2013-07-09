@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -24,7 +24,9 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
-
+    @palette = @project.palettes.build
+    @al = @palette.attribute_layers.build
+    @attribute = @al.attributes.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
@@ -40,9 +42,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-    session[:project_id] = @project.id
       if @project.save
-        redirect_to new_palette_path
+        redirect_to project_path(@project)
       else
         render action: "new"
       end

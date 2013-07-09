@@ -41,8 +41,6 @@ class PalettesController < ApplicationController
   # POST /palettes.json
   def create
     @palette = Palette.new(params[:palette])
-    @palette.project_id = session.delete(:project_id)
-    session[:palette_id] = @palette.id
       if @palette.save
         redirect_to new_attribute_layer_path
       else
