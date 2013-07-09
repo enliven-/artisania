@@ -2,13 +2,17 @@
 
 <table>
   <tr>
-    <th></th>
+    <th>Title</th>
+    <th>Summary</th>
+    <th>File</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
+    <td><%= project.name %></td>
+    <td><%= project.description %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

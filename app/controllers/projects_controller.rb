@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
     session[:project_id] = @project.id
     respond_to do |format|
       if @project.save
-        redirect_to new_palette
+        redirect_to new_palette_path
       else
         format.html { render action: "new" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
