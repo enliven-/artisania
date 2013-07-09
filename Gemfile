@@ -10,6 +10,7 @@ gem 'cocoon'
 gem 'simple_form'
 gem 'slim'
 gem 'slim-rails', :require => false
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
