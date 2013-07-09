@@ -45,7 +45,7 @@ class PalettesController < ApplicationController
     session[:palette_id] = @palette.id
     respond_to do |format|
       if @palette.save
-        redirect_to new_attribute_layer
+        redirect_to new_attribute_layer_path
       else
         format.html { render action: "new" }
         format.json { render json: @palette.errors, status: :unprocessable_entity }

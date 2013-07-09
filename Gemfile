@@ -11,7 +11,7 @@ gem 'simple_form'
 gem 'slim'
 gem 'slim-rails', :require => false
 gem 'devise'
-
+gem 'nested_form'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

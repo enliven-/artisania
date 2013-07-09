@@ -41,11 +41,11 @@ class AttributeLayersController < ApplicationController
   # POST /attribute_layers.json
   def create
     @attribute_layer = AttributeLayer.new(params[:attribute_layer])
-
+    @attribute_layer.palette_id = session[:palette_id]
+    session[:attribute_layer_id] = @attribute_layer.id
     respond_to do |format|
       if @attribute_layer.save
-        format.html { redirect_to @attribute_layer, notice: 'Attribute layer was successfully created.' }
-        format.json { render json: @attribute_layer, status: :created, location: @attribute_layer }
+        redirect_to new_attribute_path
       else
         format.html { render action: "new" }
         format.json { render json: @attribute_layer.errors, status: :unprocessable_entity }
