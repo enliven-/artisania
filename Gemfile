@@ -7,11 +7,9 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 gem 'simple_form'
-gem 'cocoon'
 gem 'slim'
 gem 'slim-rails', :require => false
 gem 'devise'
-gem 'nested_form'
 gem "paperclip", "~> 3.0"
 
 # Gems used only for assets and not required
