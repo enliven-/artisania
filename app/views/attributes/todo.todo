@@ -3,3 +3,16 @@ project update gives error:
 
 remove cocoon and do the add partial via nested_form tut video
 
+user authentication with customer, and artisan both side
+
+any gem for inbuilt msging system from user to user? if so, msging system
+
+best way to work on front end styling for this? bootstrap or something else? 
+
+
+----------------------------viksit------------------------
+design versions:
+    migration, models, controllers and views
+
+design_edit_page, includes all the jquery logic
+
