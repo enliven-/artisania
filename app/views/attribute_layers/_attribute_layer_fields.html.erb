@@ -1,5 +1,6 @@
-<%= f.input :name %>
+<%= f.input :name, label: "Attribute Layer Name" %>
 
 <%= f.simple_fields_for :attributes do |attr_form| %>
 	<%= render 'attributes/attribute_fields', f: attr_form %>
 <% end %>
+<%= link_to_add_association 'Add attribute', f, :attributes, :partial => 'attributes/attribute_fields', :data => {"association-insertion-method" => "prepend" }  %>

@@ -1,5 +1,6 @@
-<%= f.input :name %>
+<%= f.input :name, label: "Palette Name" %>
 
 <%= f.simple_fields_for :attribute_layers do |al_form| %>
 	<%= render 'attribute_layers/attribute_layer_fields', f: al_form %>
 <% end %>
+<%= link_to_add_association 'Add layer', f, :attribute_layers, :partial => 'attribute_layers/attribute_layer_fields', :data => {"association-insertion-method" => "prepend" }  %>

@@ -1,5 +1,5 @@
 <%= simple_form_for @project, url_path: projects_path, html: { multipart: true } do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, label: "Project Name" %>
   <%= f.input :description, as: :text %>
   <%= f.file_field :img_file %><br><br>
   
@@ -15,5 +15,8 @@
 textarea, input {
     max-height: 200px;
     width: 400px;
+}
+body {
+    padding-left: 20px;
 }
 </style>

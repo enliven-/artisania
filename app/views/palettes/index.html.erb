@@ -1,21 +1,34 @@
-<h1>Listing palettes</h1>
-
-<table>
+<h3>Listing palettes for <%#= current_user.name %> </h3>
+ 
+<table class="projects-table">
   <tr>
+    <th>Palette Name</th>
+    <th>Product Category</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
-
+ 
 <% @palettes.each do |palette| %>
   <tr>
+    <td><%= palette.name %></td>
+    <td><%#= palette.product_category.name %></td>
+
     <td><%= link_to 'Show', palette %></td>
     <td><%= link_to 'Edit', edit_palette_path(palette) %></td>
-    <td><%= link_to 'Destroy', palette, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Remove', palette, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
 <%= link_to 'New Palette', new_palette_path %>
+
+
+
+
+<style>
+.projects-table tr td{
+    padding: 15px;
+}
+</style>

@@ -14,6 +14,9 @@ class PalettesController < ApplicationController
   # GET /palettes/1.json
   def show
     @palette = Palette.find(params[:id])
+    @attribute_layers = @palette.attribute_layers
+    @ids = @attribute_layers.map { |layer| layer.id }
+    @attributes = Attribute.all.select {|attr| @ids.include?(attr.id) }
 
     respond_to do |format|
       format.html # show.html.erb

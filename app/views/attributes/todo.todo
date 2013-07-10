@@ -1,0 +1,5 @@
+project update gives error:
+    > undefined method `keys' for #<ActiveRecord::Relation:0xae8af08>
+
+remove cocoon and do the add partial via nested_form tut video
+

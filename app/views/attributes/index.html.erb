@@ -2,6 +2,8 @@
 
 <table>
   <tr>
+    <th>Attribute Name</th>
+    <th>Attr img</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +11,8 @@
 
 <% @attributes.each do |attribute| %>
   <tr>
+    <td><%= attribute.name %></td>
+    <td><%= image_tag attribute.attr_img.url(:thumb) %></td>
     <td><%= link_to 'Show', attribute %></td>
     <td><%= link_to 'Edit', edit_attribute_path(attribute) %></td>
     <td><%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>

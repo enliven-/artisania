@@ -1,5 +1,47 @@
 <p id="notice"><%= notice %></p>
 
+<h3> Project <%=@project.id=%> </h3>
+<table class="project">
+    <tr>
+        <td>Project Name: </td><td><%=@project.name=%></td>
+    </tr>
+    <tr>
+        <td>Project Description:</td> <td><%=@project.description=%></td>
+    </tr>
+    <tr>
+       <td><%#= "#{current_user.role}" %> :</td> <td><%#=current_user.name %></td>
+    </tr>
+    <tr>
+        <td>Last Updated At:</td> <td><%=@project.updated_at=%>
+    </tr>
+    <tr>
+        <td>Created At:</td> <td><%=@project.created_at=%></td>
+    </tr>
+</table>
+
+
+<h4>Palettes associated with this Project</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Link</th>
+  <% @palettes.each do |palette| %>
+    <tr>
+      <td><%= palette.name %></td>
+      <td><%= link_to 'Show', palette %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<style>
+tr td, tr th{
+    min-width: 150px;
+    padding: 2px;
+    text-align: left;
+}
+</style>
+
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

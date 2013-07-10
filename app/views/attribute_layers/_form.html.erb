@@ -2,12 +2,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	  <%= f.input :name %>
+	  <%= f.input :name, label: "Attribute Layer Name" %>
   </div>
 
   <%= f.simple_fields_for :attributes do |builder| %>
     <%= render 'attribute_fields', :f => builder %>
   <% end %>
+  <%= link_to_add_association 'Add attribute', f, :attributes, :partial => 'attributes/attribute_fields', :data => {"association-insertion-method" => "prepend" }  %>
 
 
   <div class="form-actions">
