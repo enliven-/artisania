@@ -1,0 +1,21 @@
+<h1>Listing design_versions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @design_versions.each do |design_version| %>
+  <tr>
+    <td><%= link_to 'Show', design_version %></td>
+    <td><%= link_to 'Edit', edit_design_version_path(design_version) %></td>
+    <td><%= link_to 'Destroy', design_version, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Design version', new_design_version_path %>
