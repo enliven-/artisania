@@ -2,6 +2,8 @@
 
 <table>
   <tr>
+    <th>DesVersion Id</th>
+    <th>DesVersion html</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +11,8 @@
 
 <% @design_versions.each do |design_version| %>
   <tr>
+    <td><%= design_version.id %></td>
+    <td><%= design_version.design_html %></td>
     <td><%= link_to 'Show', design_version %></td>
     <td><%= link_to 'Edit', edit_design_version_path(design_version) %></td>
     <td><%= link_to 'Destroy', design_version, method: :delete, data: { confirm: 'Are you sure?' } %></td>

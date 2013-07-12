@@ -1,0 +1,426 @@
+
+  
+    <!-- wPaint -->
+  <link rel="Stylesheet" type="text/css" href="/wPaint.css" />
+  <script type="text/javascript" src="/wPaint.js"></script>
+
+  <!-- wColorPicker -->
+  <link rel="Stylesheet" type="text/css" href="/inc/wColorPicker.css" />
+  <script type="text/javascript" src="/inc/wColorPicker.js"></script>
+    <div class="row span12 bordered" id="design">
+          
+        
+      <div id="design-wrapper">  
+        <div class="span2" id="pallete">
+
+          <div class="menu_ bordered">
+              
+            
+                <!-- TODO: VIKSIT - Loopover the attributes we get from above selection: JS -->
+                
+            <div id="choice1" class="choice">
+              <img src="/pictures/Patterns/pattern1.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern3.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern4.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern5.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern6.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern7.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern8.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern9.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern10.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern11.jpg" _width="90px" class="attr">
+              <img src="/pictures/Patterns/pattern12.jpg" _width="90px" class="attr">
+            </div>
+
+            <div id="choice2" class="choice">
+              <img src="/pictures/Stitches/stich1.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich2.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich3.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich4.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich5.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich6.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich7.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich8.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich9.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich10.png" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich11.jpg" _width="90px" class="attr">
+              <img src="/pictures/Stitches/stich12.jpg" _width="90px" class="attr">
+            </div>
+
+            <div id="choice3" class="choice">
+              <img src="/pictures/Mirror Work/m1.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m2.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m3.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m4.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m5.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m6.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m7.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m8.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m9.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m10.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m11.jpg" _width="90px" class="attr">
+              <img src="/pictures/Mirror Work/m12.jpg" _width="90px" class="attr">
+            </div>
+
+            <div id="choice4" class="choice">
+              <img src="/pictures/Buttons/button1.jpg" _width="90px" class="attr">
+              <img src="/pictures/Buttons/button2.jpg" _width="90px" class="attr">
+              <img src="/pictures/Buttons/button3.jpg" _width="90px" class="attr">
+              <img src="/pictures/Buttons/button4.jpg" _width="90px" class="attr">
+            </div>
+
+          </div>
+
+        </div>
+        <div id="controls">
+          <button class="btn pull-left" id="save">Save</button>
+          <button class="btn pull-left" id="restore">Restore</button>
+          <button class="btn pull-left" id="prev-version">Previous Version</button>
+          <button class="btn pull-left" id="next-version">Next Version</button>
+        </div>
+
+        <div id="wrapper_container">
+          <div class="span9 unselectable" id="canvas_container">
+            <button class="btn pull-left" id="reset">Reset</button>
+            <button class="btn pull-left" id="remove-img">Remove Image</button>
+            <button class="btn pull-left" id="switch">Switch User</button>
+
+            <canvas id="canvas"></canvas>
+            <div id="wPaint"></div>
+
+          </div>
+        </div>
+      </div>    
+    </div> <!-- /row -->
+
+<script>
+
+console.log("loading projects.js");
+
+
+$(document).ready(function() {
+
+    var contained;
+
+
+    $("#save").click(function(event) {
+        contained =  $("#canvas_container").clone().html();
+        var params = { 'design_html' : contained };
+        $.ajax({
+            type: 'POST',
+            url: '/design_versions/',
+            data: params,
+            success: function(data) {
+                $("#canvas_container").html("");
+            }
+        });
+    });
+
+
+    $("#restore").click(function(event) {
+        // $("#canvas_container").html(contained);
+        $.ajax({
+            type: 'GET',
+            url: '/design_versions/',
+            // data: params,
+            success: function(data) {
+                console.log(data);
+                $("#canvas_container").html(data);
+                var commentboxes = $(".comment-box");
+                $.each(commentboxes, function(index, commentbox) {
+                    make_textarea_droppable($(commentbox));
+                });
+                $(".dropped-attr").draggable({'containment': $("#canvas_container") });
+                $("#save").removeAttr("disabled");
+                $("#canvas_container").css({'opacity' : 1});
+
+
+            }
+        });
+    });
+
+    $("#prev-version").click(function(event) {
+        // $("#canvas_container").html(contained);
+        var params = { 'prev' : true };
+        $.ajax({
+            type: 'GET',
+            url: '/design_versions/',
+            data: params,
+            success: function(data) {
+                // alert("data");
+                // console.log(data);
+                $("#canvas_container").html(data);
+                var commentboxes = $(".comment-box");
+                $.each(commentboxes, function(index, commentbox) {
+                    make_textarea_droppable($(commentbox));
+                });
+                $(".dropped-attr").draggable({'containment': $("#canvas_container") });
+                $("#save").attr("disabled", "disabled");
+                $("#canvas_container").css({'opacity' : .5});
+                // $("#controls").css({'opacity' : 1});
+
+            }
+        });
+    });
+
+    $("#next-version").click(function(event) {
+        var params = { 'next' : true };
+        $.ajax({
+            type: 'GET',
+            url: '/design_versions/',
+            data: params,
+            success: function(data) {
+                // alert("data");
+                // console.log(data);
+                $("#canvas_container").html(data);
+                var commentboxes = $(".comment-box");
+                $.each(commentboxes, function(index, commentbox) {
+                    make_textarea_droppable($(commentbox));
+                });
+                $(".dropped-attr").draggable({'containment': $("#canvas_container") });
+                $("#save").attr("disabled", "disabled");
+                $("#canvas_container").css({'opacity' : .5});
+                // $("#controls").css({'opacity' : 1});
+
+            }
+        });
+    });
+
+// --------------------------------------------------------------------------------------
+    var count = 1;
+    var user  = "Customer";
+
+    $(".attr").draggable({
+        helper: "clone"
+    });
+
+
+    $("img").css({ 'opacity' : 0.7, 'zIndex': 10 });
+
+
+    $("img").data({
+        'originalLeft': $("img").css('left'),
+        'origionalTop': $("img").css('top')
+    });
+
+
+
+    $("#canvas_container").on("dblclick", "#canvas", function(event) {
+        
+        var new_pin = make_new_pin(count);
+        $("#canvas_container").append(new_pin);
+
+        var new_commentbox = make_new_comment_box(count);
+        $("#canvas_container").append(new_commentbox);
+        make_textarea_droppable(new_commentbox);
+
+
+        count+=1;
+
+    });
+
+
+
+    $("#canvas_container").on("click", ".close", function(event) {
+        var div = $(event.target).closest(".comment-box");
+        var id = div.attr("id");
+        var pin = $("#"+id);
+        pin.remove();
+        div.remove();
+        count-=1;
+    });
+
+
+
+    $("#canvas_container").on("keypress", "textarea", function(event) {        
+        var code = event.keyCode ? event.keyCode : event.which;
+        if (code==13) {
+            event.preventDefault();
+            var comment_history = $(this).parent().find('.comment-history');
+            var comment = $(this).val();
+
+            if (comment.trim()!="") {
+                comment_history.append(user + ": " + comment + "<br />");
+            }
+            $(this).val("").focus();
+        }
+    });
+
+    $("#canvas_container").on("click", ".minimize", function(event) {
+        minimize_obj($(this));
+    });
+
+
+    $("#canvas_container").on("click", ".maximize", function(event) {
+        maximize_obj($(this));
+    });
+
+    
+    $("#canvas_container").on("click", ".pin", function(event) {
+
+
+        $(".selected-pin").removeClass("selected-pin");
+        var pin = $(event.target);
+        pin.addClass("selected-pin");
+        pin_id = pin.attr("id");
+        console.log(pin_id);
+        var commentboxes = $(".minimize");
+        $.each(commentboxes, function(index, commentbox) {
+            var commentbox_id = $(commentbox).closest(".comment-box").attr("id");
+            if (commentbox_id != pin_id) {
+                minimize_obj($(commentbox));
+            } else {
+                console.log(commentbox_id + "=" + pin_id);
+                maximize_obj($(commentbox));
+            }
+            $("textarea").focus();
+        });
+    });
+
+
+    $("#canvas_container").droppable({
+        drop: function(event, ui) {
+            console.log("droping");
+            var image = clone_attr_image($(ui.helper));
+            $(this).append(image);
+        }
+    });
+
+
+    // $(".dropped-attr").draggable({
+    //     containment: $("#canvas_container")
+    // });
+
+// ------------------------------------------------------------------------------------------------------
+
+
+
+    var make_new_pin = function(count) {
+        
+        var pin = $('<img/>', {'src': "/defaultpin.png", 'class': "pin", "id": count, "title": count, "data-toggle": "tooltip", "data-placement": "right"} );
+        
+        pin .css("position", "absolute")
+            .css("top",  event.y)
+            .css("left", event.x);
+        
+        pin.draggable({ 
+            containment: $("#canvas_container"),
+            stop: function(event, ui) {
+                $(ui.helper).click();
+            }
+        });
+
+        return pin;
+
+    }
+
+
+
+    var make_new_comment_box = function(count) {
+
+        var minimize = "<span class=minimize>-</span>";
+        var maximize = "<span class=maximize>+</span>";
+        var close = "<span class=close id=" + count + ">X</span>";
+        
+        var commentbox = $("<div class=comment-box id=" + count + "><span class=comment-box-header>Comments for Pin " + count + "</span><div class=comment-history></div><textarea class=txt id=" + count + "></textarea>"+ minimize + close + "</div>");
+        
+        $(commentbox).css("position", "absolute")
+                     .css("bottom", 40)
+                     .css("right", "60px");
+
+        return commentbox;
+
+    }
+
+
+    var minimize_obj = function(obj) {
+        // var div = obj.closest(".comment-box");
+        // console.log(div);
+        // // $(div).hide();
+        // $(div).addClass("minimized");
+        var div = obj.closest(".comment-box");
+        var area = obj.parent().find(".txt");
+        $(area).addClass("minimized");
+        $(div).hide();
+    };
+
+
+    var maximize_obj = function(obj) {
+        // var div = obj.closest(".comment-box");
+        // // $(div).show();
+        // $(div).removeClass("minimized");
+        var div = obj.closest(".comment-box");
+        var area = obj.parent().find(".txt");
+        $(area).removeClass("minimized");
+        $(div).show();
+    };
+
+
+    var clone_attr_image = function(obj) {
+
+        if (obj.hasClass("dropped-attr")) {
+            return obj;
+        }
+
+        var image = obj.clone().removeClass("attr").addClass("dropped-attr");
+        // image.draggable({
+        //     containment: $("#canvas_container")
+        // });
+
+        return image;
+    }
+
+    var make_textarea_droppable = function(commentbox_obj) {
+
+        var textarea = commentbox_obj.find("textarea");
+
+        textarea.droppable({
+
+            over: function(event, ui) { 
+                $(ui.helper).addClass("drop-min");
+                var img_src = $(ui.helper).attr("src");
+                $(this).val("<img class=drop-min src=" + img_src +">");
+                $(this).focus();
+            },
+
+            out: function(event, ui) {
+                $(ui.helper).removeClass("drop-min");
+                $(this).val("");
+            },
+
+            accept: function(event, ui) {
+                return true;
+            },
+
+            drop: function(event, ui) {
+                $(ui.helper).remove();
+                $(this).focus();
+            },
+
+            snap: true,
+
+            greedy: true,
+
+            tolerance: "pointer"
+
+        });
+
+    }
+});
+  </script>
+
+  <style>
+.drop-min {
+    height: 40px;
+    width: 40px;
+}
+  </style>
+
+
+
+<style>
+#wPaint {
+  background-image:url(/tshirt.jpg);
+  background-size: 700px 700px;
+}
+</style>

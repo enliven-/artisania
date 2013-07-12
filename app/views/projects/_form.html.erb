@@ -1,14 +1,18 @@
 <%= simple_form_for @project, url_path: projects_path, html: { multipart: true } do |f| %>
+  
   <%= f.input :name, label: "Project Name" %>
   <%= f.input :description, as: :text %>
   <%= f.file_field :img_file %><br><br>
+  
   <fieldset>
 	  <%= f.simple_fields_for :palettes do |palette_form| %>
 	    <%= render 'palette_fields', :f => palette_form %>
-	  <% end %>
+	  <% end %>   
 	  <div><%= link_to_add_fields "Add Palette", f, :palettes %></div>
   </fieldset>
+  
   <%= f.button :submit %>
+
 <% end %>
 
 <style>

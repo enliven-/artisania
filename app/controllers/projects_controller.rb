@@ -77,4 +77,14 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def design
+    project = Project.find(params[:id])
+    design_versions = DesignVersion.where("project_id=?", project.id)
+    most_rec_des_ver = design_versions.last
+    # render text: most_rec_des_ver.design_html
+    render 'design'
+  end
+
 end

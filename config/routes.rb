@@ -7,11 +7,15 @@ Artisania::Application.routes.draw do
   resources :palettes
   resources :attribute_layers
   resources :attributes
+  resources :design_versions
 
   devise_for :users
 
-  
-
+  resources :projects do
+    member do
+      get :design
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

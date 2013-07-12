@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<table class="design_version">
+    <tr>
+        <td>design html: </td><td><%=@design_version.design_html=%></td>
+    </tr>
+</table>
 
 <%= link_to 'Edit', edit_design_version_path(@design_version) %> |
 <%= link_to 'Back', design_versions_path %>
