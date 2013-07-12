@@ -5,5 +5,7 @@ class Project < ActiveRecord::Base
   
   has_many :palettes, dependent: :destroy
   accepts_nested_attributes_for :palettes
-
+  
+  belongs_to :user
+  
 end

@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
+  before_filter :authenticate_user!
   def index
     @projects = Project.all
     
@@ -43,6 +44,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.user = current_user
       if @project.save
         redirect_to project_path(@project)
       else
