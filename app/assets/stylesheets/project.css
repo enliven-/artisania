@@ -1,0 +1,158 @@
+
+textarea, input {
+    max-height: 200px;
+    /*width: 400px;*/
+}
+
+body {
+    padding-left: 20px;
+}
+
+.bordered {
+    border: 1px solid gray;
+}
+
+#pallete {
+    min-height: 700px;
+    width: 275px;
+    border: inherit;
+}
+
+#canvas_container {
+    min-height: 700px;
+    /*border: inherit;*/
+    width: 700px;
+}
+
+.pattern {
+    border: inherit;
+    min-height: 125px;
+    max-height: 125px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#reset {
+
+}
+
+#canvas_container #canvas {
+    /*border: 1px solid gray;*/
+    position: relative;
+    /*left: 100px;*/
+    width: 600px;
+    height: 600px;
+    background-image: url("/tshirt.jpg");
+    background-size: 600px 600px;
+}
+
+
+
+
+.unselectable {
+   -moz-user-select     : none;
+   -khtml-user-select   : none;
+   -webkit-user-select  : none;
+   -o-user-select       : none;
+   user-select          : none;
+}
+
+.comment-box {
+    border: 1px solid gray;
+    padding: 5px;
+    max-width: 275px;
+    background-color: white;
+}
+
+.close {
+    color: red;
+    float: right;
+
+}
+
+.minimize {
+    font-size: 50px;
+    font-style: bold;
+    color: gray;
+    cursor: hand; cursor: pointer;
+    float: right;
+}
+.maximize {
+    font-size: 30px;
+    font-style: bold;
+    color: gray;
+    cursor: hand; cursor: pointer;
+    float: right;
+}
+
+.minimized {
+    display: none;
+}
+
+.menu_ {
+    min-height: 500px;
+}
+
+.menu_ select {
+    width: 274px;
+}
+
+.attr {
+    padding: 8px;
+}
+
+.customer {
+    color: darkgreen;
+}
+
+.artisan {
+    color: maroon;
+}
+
+.comment-box {
+    min-width: 260px;
+}
+
+.dropped-attr {
+    /*border: 5px solid gray;*/
+}
+
+.img-rem {
+    position: relative;
+}
+
+#selected-img {
+    border: 2px solid maroon;
+}
+
+
+/*GROW*/
+.attr, .dropped-attr {
+  height: 90px;
+  width: 90px;
+
+}
+ 
+.pin {
+    height: 30px;
+    width: 20px;
+}
+
+.comment-history {
+    min-height: 150px;
+    max-height: 500px;
+    overflow-y :scroll;
+}
+
+.comment-box-header {
+    background-color: lightgray;
+}
+
+.selected-pin {
+    border: 2px solid maroon;
+}
+
+.drop-min {
+    height: 40px;
+    width: 40px;
+}
