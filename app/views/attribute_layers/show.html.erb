@@ -1,5 +1,29 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Label:</b>
+  <%= @attribute_layer.name %>
+</p>
+
+<table>
+  <tr>
+    <th>Attribute Name</th>
+    <th>Attr img</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @attribute_layer.attributes.each do |attribute| %>
+  <tr>
+    <td><%= attribute.name %></td>
+    <td><%= image_tag attribute.attr_img.url(:thumb) %></td>
+    <td><%= link_to 'Show', attribute %></td>
+    <td><%= link_to 'Edit', edit_attribute_path(attribute) %></td>
+    <td><%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
 
 <%= link_to 'Edit', edit_attribute_layer_path(@attribute_layer) %> |
 <%= link_to 'Back', attribute_layers_path %>

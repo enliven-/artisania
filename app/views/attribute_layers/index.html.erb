@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Label</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +10,7 @@
 
 <% @attribute_layers.each do |attribute_layer| %>
   <tr>
+    <td><%= attribute_layer.name %></td>
     <td><%= link_to 'Show', attribute_layer %></td>
     <td><%= link_to 'Edit', edit_attribute_layer_path(attribute_layer) %></td>
     <td><%= link_to 'Destroy', attribute_layer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

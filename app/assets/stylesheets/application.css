@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
  */
+<style>
+textarea, input {
+    max-height: 200px;
+    width: 400px;
+}
+body {
+    padding-left: 20px;
+}
+</style>
