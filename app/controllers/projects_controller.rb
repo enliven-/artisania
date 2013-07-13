@@ -79,6 +79,12 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def send_invitation
+    @project = Project.find(params[:id])
+    ProjectMailer.send_invitation_for_project(@project, params[:email])
+    render nothing: true
+  end
 
 
   def design
@@ -87,6 +93,14 @@ class ProjectsController < ApplicationController
     most_rec_des_ver = design_versions.last
     # render text: most_rec_des_ver.design_html
     render 'design'
+  end
+  
+  def product_by_category
+    @projects = Project.where(product_category_id: params[:product_catgory_id], show_in_catalog: true)
+  end
+  
+  def product_by_artisan
+    @projects = Project.where(artisan_id: params[:product_catgory_id], show_in_catalog: true)
   end
 
 end
