@@ -94,5 +94,13 @@ class ProjectsController < ApplicationController
     # render text: most_rec_des_ver.design_html
     render 'design'
   end
+  
+  def product_by_category
+    @projects = Project.where(product_category_id: params[:product_catgory_id], show_in_catalog: true)
+  end
+  
+  def product_by_artisan
+    @projects = Project.where(artisan_id: params[:product_catgory_id], show_in_catalog: true)
+  end
 
 end
