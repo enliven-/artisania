@@ -82,7 +82,7 @@ class ProjectsController < ApplicationController
   
   def send_invitation
     @project = Project.find(params[:id])
-    ProjectMailer.send_invitation_for_project(@project, params[:email])
+    ProjectMailer.send_invitation_for_project(@project, params[:email]).deliver
     render nothing: true
   end
 

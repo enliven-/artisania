@@ -7,6 +7,6 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :palettes
   
   belongs_to :user
-  belongs_to :project
+  belongs_to :product_category
   
 end

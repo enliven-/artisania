@@ -3,11 +3,11 @@ Artisania::Application.routes.draw do
   root :to => "home#index"
 
 
-  resources :projects
   resources :palettes
   resources :attribute_layers
   resources :attributes
   resources :design_versions
+  resources :product_categories
 
   devise_for :users
 
