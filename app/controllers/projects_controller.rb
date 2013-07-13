@@ -79,6 +79,12 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def send_invitation
+    @project = Project.find(params[:id])
+    ProjectMailer.send_invitation_for_project(@project, params[:email])
+    render nothing: true
+  end
 
 
   def design
