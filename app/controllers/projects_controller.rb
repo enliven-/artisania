@@ -92,6 +92,7 @@ class ProjectsController < ApplicationController
     design_versions = DesignVersion.where("project_id=?", project.id)
     most_rec_des_ver = design_versions.last
     # render text: most_rec_des_ver.design_html
+    session[:project_id]
     render 'design'
   end
   
