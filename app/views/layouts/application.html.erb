@@ -7,9 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
+	<div class="navbar">
+	  <div class="navbar-inner">
+		  <%= link_to 'Artisnia', root_path, class: 'brand' %>
+	    <ul class="nav">
+			<%# if current_user.artisan? %>
+			<li><%= link_to 'New Project', new_project_path %></li>
+			<li><%= link_to 'New Category', new_product_category_path %></li>
+			<li><%= link_to 'Show Catalog', product_by_artisan_projects_path(user_id: current_user.id) %></li>
+			<%# else %>
+			<%# end %>
+	    </ul>
+	  </div>
+	</div>
 <%= yield %>
 
 </body>
