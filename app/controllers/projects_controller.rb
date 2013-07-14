@@ -103,5 +103,12 @@ class ProjectsController < ApplicationController
   def products_by_artisan
     @projects = Project.where(user_id: params[:user_id], show_in_catalog: true)
   end
+  
+  def duplicate
+    @project.find(params[:id])
+    @project.duplicate!
+    @project.update_attribute :customer_id, current_user.id
+    render action: 'edit'
+  end
 
 end

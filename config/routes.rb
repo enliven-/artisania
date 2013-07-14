@@ -15,6 +15,7 @@ Artisania::Application.routes.draw do
     member do
       get  :design
       post :send_invitation
+      get :duplicate
     end
     collection do
       get :products_by_category
