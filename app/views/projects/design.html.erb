@@ -3,7 +3,7 @@
           
         
       <div id="design-wrapper">  
-        <div class="span2" id="pallete">
+        <div class="span3" id="pallete">
 
           <div class="menu_ bordered">
               
@@ -25,7 +25,7 @@
               <img src="/pictures/Patterns/pattern12.jpg" _width="90px" class="attr">
             </div>
 
-            <div id="choice2" class="choice">
+<!--             <div id="choice2" class="choice">
               <img src="/pictures/Stitches/stich1.jpg" _width="90px" class="attr">
               <img src="/pictures/Stitches/stich2.jpg" _width="90px" class="attr">
               <img src="/pictures/Stitches/stich3.jpg" _width="90px" class="attr">
@@ -60,7 +60,7 @@
               <img src="/pictures/Buttons/button2.jpg" _width="90px" class="attr">
               <img src="/pictures/Buttons/button3.jpg" _width="90px" class="attr">
               <img src="/pictures/Buttons/button4.jpg" _width="90px" class="attr">
-            </div>
+            </div> -->
 
           </div>
 
@@ -72,8 +72,8 @@
           <button class="btn pull-left" id="next-version">Next Version</button>
         </div>
 
-        <div id="wrapper_container">
-          <div class="span9 unselectable" id="canvas_container">
+        <div id="span7 pull-right wrapper_container">
+          <div class="unselectable" id="canvas_container">
             <button class="btn pull-left" id="reset">Reset</button>
             <button class="btn pull-left" id="remove-img">Remove Image</button>
             <button class="btn pull-left" id="switch">Switch User</button>
@@ -200,6 +200,7 @@ $(document).ready(function() {
 
     $("#canvas_container").on("dblclick", "#canvas", function(event) {
         
+        console.log("clicked");
         var new_pin = make_new_pin(count);
         $("#canvas_container").append(new_pin);
 
@@ -412,8 +413,8 @@ $(document).ready(function() {
 
 
 <style>
-#wPaint {
-  background-image:url(pictures/tshirt.jpg);
-  background-size: 700px 700px;
+#canvas_container {
+  background-image:url(/pictures/tshirt.jpg);
+  background-size: 400px 400px;
 }
 </style>

@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130714103735) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130714103735) do
   create_table "palettes", :force => true do |t|
     t.string   "name"
     t.integer  "project_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -61,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20130714103735) do
     t.string   "name"
     t.string   "description"
     t.integer  "product_category_id"
-    t.integer  "catalog_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
