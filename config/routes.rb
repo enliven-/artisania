@@ -8,6 +8,7 @@ Artisania::Application.routes.draw do
   resources :attributes
   resources :design_versions
   resources :product_categories
+  resources :catalog
 
   devise_for :users
 
@@ -20,6 +21,8 @@ Artisania::Application.routes.draw do
     collection do
       get :products_by_category
       get :products_by_artisan
+      get :products
+      get :customer_projects
     end
   end
   # The priority is based upon order of creation:

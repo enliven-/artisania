@@ -3,6 +3,7 @@ class ProjectMailer < ActionMailer::Base
   
   def send_invitation_for_project(project, email)
     @project = project
+    
     mail(
       to: email,
       from: 'prachibhawre@gmail.com',

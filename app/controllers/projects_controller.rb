@@ -82,7 +82,11 @@ class ProjectsController < ApplicationController
   
   def send_invitation
     @project = Project.find(params[:id])
-    ProjectMailer.send_invitation_for_project(@project, params[:email]).deliver
+    if current_user.customer?
+      ProjectMailer.send_invitation_for_project(@project, @project.user.email).deliver
+    else
+      ProjectMailer.send_invitation_for_project(@project, User.find(@project.customer_id).email).deliver if @project.customer_id
+    end
     render nothing: true
   end
 
@@ -109,6 +113,14 @@ class ProjectsController < ApplicationController
     @project.duplicate!
     @project.update_attribute :customer_id, current_user.id
     render action: 'edit'
+  end
+  
+  def products
+    @projects = Project.where(show_in_catalog: true)
+  end
+  
+  def customer_projects
+    @projects = Project.where(customer_id: params[:customer_id])
   end
 
 end
