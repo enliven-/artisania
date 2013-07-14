@@ -2,7 +2,7 @@ class PalettesController < ApplicationController
   # GET /palettes
   # GET /palettes.json
   def index
-    @palettes = Palette.all
+    @palettes = Palette.where("user_id=?", current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
