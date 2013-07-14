@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   before_filter :authenticate_user!
   def index
-    @projects = Project.all
+    @projects = Project.where("user_id =?", current_user.id)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -92,7 +92,7 @@ class ProjectsController < ApplicationController
     design_versions = DesignVersion.where("project_id=?", project.id)
     most_rec_des_ver = design_versions.last
     # render text: most_rec_des_ver.design_html
-    session[:project_id]
+    session[:project_id] = project.id
     render 'design'
   end
   
