@@ -14,13 +14,26 @@
 			<%# if current_user.artisan? %>
 			<li><%= link_to 'New Project', new_project_path %></li>
 			<li><%= link_to 'New Category', new_product_category_path %></li>
-			<li><%= link_to 'Show Catalog', product_by_artisan_projects_path(user_id: current_user.id) %></li>
+			<li><%= link_to 'Show Catalog', products_by_artisan_projects_path(user_id: current_user.id) %></li>
 			<%# else %>
 			<%# end %>
 	    </ul>
 	  </div>
 	</div>
-<%= yield %>
-
+    <div class="row" id="main-container">
+        <div class="row span2" id="left-container"></div>
+        <div class="row span8" id="right-container"><%= yield %></div>
+    </div>
 </body>
 </html>
+
+
+<style>
+#right-container {
+    
+}
+
+#left-container {
+
+}    
+</style>

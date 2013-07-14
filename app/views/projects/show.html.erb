@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h3> Project <%=@project.id=%> </h3>
-<table class="project">
+<h4><%=@project.name=%></h4>
+<table class="project table table-bordered table-striped table-hover">
     <tr>
-        <td>Project Name: </td><td><%=@project.name=%></td>
-    </tr>
+        <td>Project ID: </td><td><%=@project.id=%></td>
+    </tr>  
     <tr>
         <td>Project Description:</td> <td><%=@project.description=%></td>
     </tr>

@@ -8,6 +8,22 @@ scenario:
 best way to work on front end styling for this? bootstrap or something else? 
 
 
+IMP:
+    in projects => design:
+        look at the design.html.erb
+        instead of harcoding layers, and attributes,
+        i want to have a for loop for 
+        layers
+        and attributes
+
+
+forms text area width
+styling of views more
+    index, show etc : what info to show
+    use tables?
+
+sign out button on top bar
+
 
 ----------------------------viksit------------------------
 x design versions: migration, models, controllers and views

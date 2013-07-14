@@ -1,6 +1,6 @@
 Artisania::Application.routes.draw do
 
-  root :to => "home#index"
+  root :to => "projects#index"
 
 
   resources :palettes
@@ -13,12 +13,12 @@ Artisania::Application.routes.draw do
 
   resources :projects do
     member do
-      get :design
+      get  :design
       post :send_invitation
     end
     collection do
-      get :product_by_category
-      get :product_by_artisan
+      get :products_by_category
+      get :products_by_artisan
     end
   end
   # The priority is based upon order of creation:

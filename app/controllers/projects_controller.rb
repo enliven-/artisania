@@ -96,11 +96,11 @@ class ProjectsController < ApplicationController
     render 'design'
   end
   
-  def product_by_category
+  def products_by_category
     @projects = Project.where(product_category_id: params[:product_catgory_id], show_in_catalog: true)
   end
   
-  def product_by_artisan
+  def products_by_artisan
     @projects = Project.where(user_id: params[:user_id], show_in_catalog: true)
   end
 

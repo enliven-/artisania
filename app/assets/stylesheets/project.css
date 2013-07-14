@@ -1,12 +1,9 @@
 
 textarea, input {
     max-height: 200px;
-    /*width: 400px;*/
+    width: 400px;
 }
 
-body {
-    padding-left: 20px;
-}
 
 .bordered {
     border: 1px solid gray;
