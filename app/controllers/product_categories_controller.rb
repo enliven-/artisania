@@ -24,7 +24,6 @@ class ProductCategoriesController < ApplicationController
   # GET /product_categories/new.json
   def new
     @product_category = ProductCategory.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @product_category }
@@ -39,17 +38,20 @@ class ProductCategoriesController < ApplicationController
   # POST /product_categories
   # POST /product_categories.json
   def create
-    @product_category = ProductCategory.new(params[:product_category])
 
-    respond_to do |format|
-      if @product_category.save
-        format.html { redirect_to @product_category, notice: 'Product category was successfully created.' }
-        format.json { render json: @product_category, status: :created, location: @product_category }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @product_category.errors, status: :unprocessable_entity }
-      end
-    end
+    session[:return_to] ||= request.referer
+    @product_category = ProductCategory.new(params[:product_category])
+    @product_category.save
+    redirect_to session[:return_to]
+    # respond_to do |format|
+    #   if @product_category.save
+    #     format.html { redirect_to @product_category, notice: 'Product category was successfully created.' }
+    #     format.json { render json: @product_category, status: :created, location: @product_category }
+    #   else
+    #     format.html { render action: "new" }
+    #     format.json { render json: @product_category.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PUT /product_categories/1

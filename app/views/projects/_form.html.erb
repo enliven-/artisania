@@ -10,8 +10,8 @@
 
 <div class="tabbable">
   <div class="tab-content">
-    <div class="tab-pane" id="project">
-        <%= f.input :name, label: "Project Name" %>
+    <div class="tab-pane active" id="project">
+        <%= f.input :name, label: "Project Name", required: true %>
         <%= f.input :description, as: :text %>
         <%= f.file_field :img_file %>
     </div>
@@ -19,7 +19,8 @@
 
     <div class="tab-pane" id="prod-category">
       <h4>Product Category</h4>
-      <%= f.select :product_category_id, ProductCategory.all.map { |r| [r.name, r.id] }, include_blank: false  %>
+      <%= f.select :product_category_id, ProductCategory.all.map { |r| [r.name, r.id] }, include_blank: true  %>  </br> or </br> 
+      <%= link_to 'Create New Category', new_product_category_path %>
     </div>
 
     <div class="tab-pane" id="palette">
@@ -33,16 +34,13 @@
       
     </div>
 
-    <div class="tab-pane" id="attribute">
-
-    </div>
-
     <div class="tab-pane" id="options">
       <!-- <div><%= link_to_add_fields "Add Palette", f, :palettes %></div> -->
       <div id="add-attr-layer"></div>
     </div>
 
-    <%= f.button :submit, class: "btn btn-primary" %>
+    </br>
+    <%= f.button :submit, class: "btn btn-primary", id: "create-project" %>
 
 
   </div>
