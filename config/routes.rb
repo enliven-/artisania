@@ -8,7 +8,7 @@ Artisania::Application.routes.draw do
   resources :attributes
   resources :design_versions
   resources :product_categories
-  resources :catalog
+  resources :catalogs
 
   devise_for :users
 

@@ -45,7 +45,14 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user = current_user
+    @palette = Palette.new(params[:palette])
+    puts "------------------------------"
+    p params
+    puts "------------------------------"
+    
       if @project.save
+        @palette.user_id = current_user.id
+        @palette.save
         redirect_to project_path(@project)
       else
         render action: "new"
