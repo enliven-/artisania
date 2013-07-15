@@ -8,9 +8,51 @@ scenario:
 best way to work on front end styling for this? bootstrap or something else? 
 
 
+IMP:
+    in projects => design:
+        look at the design.html.erb
+        instead of harcoding layers, and attributes,
+        i want to have a for loop for 
+        layers
+        and attributes
+
+
+forms text area width
+styling of views more
+    index, show etc : what info to show
+    use tables?
+
+sign out button on top bar
+
 
 ----------------------------viksit------------------------
 x design versions: migration, models, controllers and views
 
 design_edit_page, includes all the jquery logic
 any gem for inbuilt msging system from user to user? if so, msging system
+
+
+
+
+--------------------new----------------
+
+
+
+sign out on nav bar
+
+nav bar:
+ artisan:  catalog, projects, palettes
+ customer: 
+project/show
+	latest design snapshot?
+	and send email
+
+new project to allow new category in place
+
+
+-------------------------------- bhushan -----------------------------------
+
+customer navbar:
+    catalogs (artisans), products (artisans), projects (customer)
+
+customer can only see products. once he starts editing, it becomes a new project and has customer assigned, then he sends the creator of the product an email, and now project has an assigned artisan too.

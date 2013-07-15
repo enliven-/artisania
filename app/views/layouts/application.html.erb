@@ -7,10 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
-<%= yield %>
-
+	<div class="navbar">
+	  <div class="navbar-inner">
+		  <%= link_to 'Artisania', root_path, class: 'brand' %>
+	    <ul class="nav">
+			<% if current_user %>
+				<% if current_user.artisan? %>
+					<li><%= link_to 'Projects',  projects_path %></li>
+					<li><%= link_to 'Catalog', 	 products_by_artisan_projects_path(user_id: current_user.id) %></li>
+					<li><%= link_to 'Palettes',  palettes_path %></li>
+				<% elsif current_user.customer? %>
+					<li><%= link_to 'Products', products_projects_path %></li>
+					<li><%= link_to 'Catalogs', catalogs_path %></li>
+					<li><%= link_to 'Projects', customer_projects_projects_path(customer_id: current_user.id) %></li>
+				<% else %>
+					<li><%= link_to 'Sign In', new_user_session_path %></li>
+					<li><%= link_to 'Sign Up', new_user_registration_path %></li>
+				<% end %>
+	    </ul>
+			<ul class="nav pull-right" style="float: right;">
+				<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+			</ul>
+			<% end %>
+	  </div>
+	</div>
+    <div class="row" id="main-container">
+        <div class="span0" id="left-main-container">
+        </div>
+        <div class="span12" id="right-main-container">
+        	<%= yield %>
+        </div>
+    </div>
 </body>
 </html>

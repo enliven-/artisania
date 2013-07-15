@@ -1,26 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<h3> Project <%=@project.id=%> </h3>
-<table class="project">
+<h4><%=@project.name=%></h4>
+<table class="project table table-bordered table-striped table-hover">
     <tr>
-        <td>Project Name: </td><td><%=@project.name=%></td>
-    </tr>
+        <td>Project ID: </td><td><%=@project.id=%></td>
+    </tr>  
     <tr>
         <td>Project Description:</td> <td><%=@project.description=%></td>
     </tr>
-    <tr>
+<!--     <tr>
        <td><%#= "#{current_user.role}" %> :</td> <td><%#=current_user.name %></td>
-    </tr>
+    </tr> -->
     <tr>
         <td>Last Updated At:</td> <td><%=@project.updated_at=%>
     </tr>
     <tr>
         <td>Created At:</td> <td><%=@project.created_at=%></td>
     </tr>
+    <% if current_user.customer? %>
+    <tr>
+        <td>Send Invite: </td> <td><%= link_to "Send Invitation to #{@project.user.email}" , send_invitation_project_path(@project), method: :post %></td>
+    </tr>
+    <% end %>
 </table>
 
 
 <h4>Palettes associated with this Project</h4>
+
 <table>
   <tr>
     <th>Name</th>
@@ -32,6 +38,7 @@
     </tr>
   <% end %>
 </table>
+
 
 
 <style>

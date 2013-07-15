@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711004800) do
+ActiveRecord::Schema.define(:version => 20130714103735) do
 
   create_table "attribute_layers", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130711004800) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130711004800) do
   create_table "palettes", :force => true do |t|
     t.string   "name"
     t.integer  "project_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -61,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20130711004800) do
     t.string   "name"
     t.string   "description"
     t.integer  "product_category_id"
-    t.integer  "catalog_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
@@ -69,14 +70,16 @@ ActiveRecord::Schema.define(:version => 20130711004800) do
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "user_id"
-    t.integer  "design_versions_count", :default => 0
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "img_file_file_name"
     t.string   "img_file_content_type"
     t.integer  "img_file_file_size"
     t.datetime "img_file_updated_at"
+    t.integer  "user_id"
+    t.boolean  "show_in_catalog",       :default => false
+    t.integer  "product_category_id"
+    t.integer  "customer_id"
   end
 
   create_table "users", :force => true do |t|

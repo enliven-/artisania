@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   before_filter :authenticate_user!
   def index
-    @projects = Project.all
+    @projects = Project.where("user_id =?", current_user.id)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -45,7 +45,14 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user = current_user
+    @palette = Palette.new(params[:palette])
+    puts "------------------------------"
+    p params
+    puts "------------------------------"
+    
       if @project.save
+        @palette.user_id = current_user.id
+        @palette.save
         redirect_to project_path(@project)
       else
         render action: "new"
@@ -79,6 +86,16 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def send_invitation
+    @project = Project.find(params[:id])
+    if current_user.customer?
+      ProjectMailer.send_invitation_for_project(@project, @project.user.email).deliver
+    else
+      ProjectMailer.send_invitation_for_project(@project, User.find(@project.customer_id).email).deliver if @project.customer_id
+    end
+    render nothing: true
+  end
 
 
   def design
@@ -86,7 +103,31 @@ class ProjectsController < ApplicationController
     design_versions = DesignVersion.where("project_id=?", project.id)
     most_rec_des_ver = design_versions.last
     # render text: most_rec_des_ver.design_html
-    render 'test'
+    session[:project_id] = project.id
+    render 'design'
+  end
+  
+  def products_by_category
+    @projects = Project.where(product_category_id: params[:product_catgory_id], show_in_catalog: true)
+  end
+  
+  def products_by_artisan
+    @projects = Project.where(user_id: params[:user_id], show_in_catalog: true)
+  end
+  
+  def duplicate
+    @project.find(params[:id])
+    @project.duplicate!
+    @project.update_attribute :customer_id, current_user.id
+    render action: 'edit'
+  end
+  
+  def products
+    @projects = Project.where(show_in_catalog: true)
+  end
+  
+  def customer_projects
+    @projects = Project.where(customer_id: params[:customer_id])
   end
 
 end

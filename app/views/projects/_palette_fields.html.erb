@@ -1,9 +1,15 @@
-<%= field_set_tag "Add Palette" do %>
-<%= f.input :name, label: "Palette Name" %>
 
-<%= f.simple_fields_for :attribute_layers do |al_form| %>
-	<%= render 'attribute_layer_fields', f: al_form %>
-<% end %>
+    <div class="tab-pane" id="palette-form">
+        <%= f.input :name, label: "Palette Name" %>
+    </div>
 
-<div><%= link_to_add_fields "Add attribute layer", f, :attribute_layers %></div><br>
-<% end %>
+    <div id="attr-layer-old">
+        <%= f.simple_fields_for :attribute_layers do |al_form| %>
+            <%= render 'attribute_layer_fields', f: al_form %>
+        <% end %>
+    </div>
+
+
+
+<div id="add-attr-layer-old"><%= link_to_add_fields "Add attribute layer", f, :attribute_layers %></div>
+

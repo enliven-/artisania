@@ -1,13 +1,53 @@
 <%= simple_form_for @project, url_path: projects_path, html: { multipart: true } do |f| %>
-  
-  <%= f.input :name, label: "Project Name" %>
-  <%= f.input :description, as: :text %>
-  <%= f.file_field :img_file %><br><br>
 
-  <%= f.simple_fields_for :palettes do |palette_form| %>
-    <%= render 'palette_fields', :f => palette_form %>
-  <% end %>	  
-  <div><%= link_to_add_fields "Add Palette", f, :palettes %></div><br>
-  <%= f.button :submit %>
+<ul id="main-tabs" class="nav nav-tabs">
+  <li class="active"><a href="#project" data-toggle="tab">Project</a></li>
+  <li><a href="#prod-category" data-toggle="tab">Category</a></li>
+  <li><a href="#palette" data-toggle="tab">Palette</a></li>
+  <li><a href="#attr-layer" data-toggle="tab">Attribute Layer</a></li>
+  <li><a href="#options" data-toggle="tab">Options</a></li>
+</ul>
+
+<div class="tabbable">
+  <div class="tab-content">
+    <div class="tab-pane" id="project">
+        <%= f.input :name, label: "Project Name" %>
+        <%= f.input :description, as: :text %>
+        <%= f.file_field :img_file %>
+    </div>
+
+
+    <div class="tab-pane" id="prod-category">
+      <h4>Product Category</h4>
+      <%= f.select :product_category_id, ProductCategory.all.map { |r| [r.name, r.id] }, include_blank: false  %>
+    </div>
+
+    <div class="tab-pane" id="palette">
+        <%= f.simple_fields_for :palettes do |palette_form| %>
+          <%= render 'palette_fields', f: palette_form %>
+        <% end %>
+
+    </div>
+
+    <div class="tab-pane" id="attr-layer">
+      
+    </div>
+
+    <div class="tab-pane" id="attribute">
+
+    </div>
+
+    <div class="tab-pane" id="options">
+      <!-- <div><%= link_to_add_fields "Add Palette", f, :palettes %></div> -->
+      <div id="add-attr-layer"></div>
+    </div>
+
+    <%= f.button :submit, class: "btn btn-primary" %>
+
+
+  </div>
+</div>
+
+<!-- submit button lies in the tab of palette -->
 
 <% end %>

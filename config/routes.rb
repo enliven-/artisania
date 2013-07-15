@@ -1,19 +1,28 @@
 Artisania::Application.routes.draw do
 
-  root :to => "home#index"
+  root :to => "projects#index"
 
 
-  resources :projects
   resources :palettes
   resources :attribute_layers
   resources :attributes
   resources :design_versions
+  resources :product_categories
+  resources :catalogs
 
   devise_for :users
 
   resources :projects do
     member do
-      get :design
+      get  :design
+      post :send_invitation
+      get :duplicate
+    end
+    collection do
+      get :products_by_category
+      get :products_by_artisan
+      get :products
+      get :customer_projects
     end
   end
   # The priority is based upon order of creation:

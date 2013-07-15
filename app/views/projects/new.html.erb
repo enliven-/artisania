@@ -1,5 +1,19 @@
-<h1>New project</h1>
+<h3>New project</h3>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', projects_path %>
+
+<script>
+  $(document).ready(function() {
+    var attr_layer = $('#attr-layer-old').html();
+    $('#attr-layer-old').remove();
+    $("#attr-layer").html(attr_layer);
+
+    var add_attr_layer = $('#add-attr-layer-old').html();
+    $('#add-attr-layer-old').remove();
+    $('#add-attr-layer').html(add_attr_layer);
+  });
+
+</script>
+
