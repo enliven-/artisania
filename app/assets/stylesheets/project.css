@@ -11,7 +11,7 @@ textarea, input {
 
 #pallete {
     min-height: 700px;
-    width: 275px;
+    /*width: 240px;*/
     border: inherit;
 }
 

@@ -1,5 +1,6 @@
 <h3>Listing palettes for <%#= current_user.name %> </h3>
- 
+ <%= @palettes.length %>
+ <%= current_user.id %>
 <table class="projects-table">
   <tr>
     <th>Palette Name</th>
@@ -12,7 +13,7 @@
 <% @palettes.each do |palette| %>
   <tr>
     <td><%= palette.name %></td>
-    <td><%#= palette.product_category.name %></td>
+    <td><%= palette.user_id %></td>
 
     <td><%= link_to 'Show', palette %></td>
     <td><%= link_to 'Edit', edit_palette_path(palette) %></td>
