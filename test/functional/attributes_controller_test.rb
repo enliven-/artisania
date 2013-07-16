@@ -8,7 +8,7 @@ class AttributesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:attributes)
+    assert_not_nil assigns(:palette_attributes)
   end
 
   test "should get new" do

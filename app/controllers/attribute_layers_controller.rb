@@ -25,7 +25,7 @@ class AttributeLayersController < ApplicationController
   # GET /attribute_layers/new.json
   def new
     @attribute_layer = AttributeLayer.new
-    @attribute_layer.attributes.build
+    @attribute_layer.palette_attributes.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @attribute_layer }
@@ -35,19 +35,18 @@ class AttributeLayersController < ApplicationController
   # GET /attribute_layers/1/edit
   def edit
     @attribute_layer = AttributeLayer.find(params[:id])
+    @attribute = @attribute_layer.palette_attributes.build
   end
 
   # POST /attribute_layers
   # POST /attribute_layers.json
   def create
     @attribute_layer = AttributeLayer.new(params[:attribute_layer])
-    @attribute_layer.palette_id = session[:palette_id]
-    session[:attribute_layer_id] = @attribute_layer.id
     
-      if @attribute_layer.save
-        redirect_to new_attribute_path
-      else
-        render action: "new"
+    if @attribute_layer.save
+      redirect_to new_attribute_path
+    else
+      render action: "new"
     end
   end
 
@@ -55,16 +54,11 @@ class AttributeLayersController < ApplicationController
   # PUT /attribute_layers/1.json
   def update
     @attribute_layer = AttributeLayer.find(params[:id])
-
-    respond_to do |format|
       if @attribute_layer.update_attributes(params[:attribute_layer])
-        format.html { redirect_to @attribute_layer, notice: 'Attribute layer was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to @attribute_layer, notice: 'Attribute layer was successfully updated.'
       else
-        format.html { render action: "edit" }
-        format.json { render json: @attribute_layer.errors, status: :unprocessable_entity }
+         render action: "edit"
       end
-    end
   end
 
   # DELETE /attribute_layers/1

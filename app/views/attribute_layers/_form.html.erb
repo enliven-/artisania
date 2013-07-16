@@ -5,10 +5,10 @@
 	  <%= f.input :name, label: "Attribute Layer Name" %>
   </div>
 
-  <%= f.simple_fields_for :attributes do |builder| %>
-    <%= render 'attribute_fields', :f => builder %>
+  <%= f.simple_fields_for :palette_attributes do |builder| %>
+    <%= render 'palette_attribute_fields', :f => builder %>
   <% end %>
-<div><%= link_to_add_fields "Add Attribute", f, :attributes %></div>
+<div><%= link_to_add_fields "Add Attribute", f, :palette_attributes %></div>
 
 
   <div class="form-actions">
