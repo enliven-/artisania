@@ -84,13 +84,14 @@ class ProjectsController < ApplicationController
   end
   
   def send_invitation
+    session[:return_to] = request.referer
     @project = Project.find(params[:id])
     if current_user.customer?
       ProjectMailer.send_invitation_for_project(@project, @project.user.email).deliver
     else
       ProjectMailer.send_invitation_for_project(@project, User.find(@project.customer_id).email).deliver if @project.customer_id
     end
-    render nothing: true
+    redirect_to session[:return_to]
   end
 
 
