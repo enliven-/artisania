@@ -27,10 +27,16 @@ class User < ActiveRecord::Base
   def artisan?
     true if self.role == ARTISAN
   end
-  
+
+  def catalog
+    Project.where(user_id: self.id, show_in_catalog: true)
+  end
+
   private
   
   def create_catalog
     
   end
+
+
 end

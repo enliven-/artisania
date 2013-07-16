@@ -3,7 +3,12 @@ class CatalogsController < ApplicationController
   # GET /catalogs.json
   def index
     @users = User.all.select {|u| u.artisan? }
-
+    @catalogs = []
+    @users.each do |u|
+      if u.catalog.length>0
+        @catalogs.push u.catalog 
+      end
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @catalogs }
