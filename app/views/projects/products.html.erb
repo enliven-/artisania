@@ -8,10 +8,6 @@
       <th>Description</th>
       <% if current_user.customer? %> <th>Created by</th> <% end %>
       <th>Actions</th>
-      <% if current_user.artisan? %>
-      <th></th>
-      <th></th>
-      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -23,12 +19,13 @@
         <% if current_user.customer? %> 
         <td> <%= project.user.email %></td>
         <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Clone Project', duplicate_project_path(id: project.id) %></td>
+
         <% else %>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Remove from Catalog', show_product_in_catalog_projects_path(id: project.id) %></td>
         <% end %>
-        <td><%= link_to 'Clone Project', duplicate_project_path(id: project.id) %></td>
         
       </tr>
     <% end %>
