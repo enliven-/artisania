@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h4><%=@project.name=%></h4>
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<% if current_user.artisan? %>
+ <%= link_to 'Edit', edit_project_path(@project) %> |
+<% end%>
 <%= link_to 'Back', projects_path %>
 
 </br></br>
