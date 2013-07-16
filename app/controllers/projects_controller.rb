@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @palettes = Palette.where("project_id=?", @project.id)
+    @proj_img = @project.img_file.url
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -116,9 +117,7 @@ class ProjectsController < ApplicationController
     @project = project.amoeba_dup
     @project.update_attributes(customer_id: current_user.id, show_in_catalog: false)
     @project.save
-    # render action: 'edit'
-
-    redirect_to action: :design, id: @project.id
+    redirect_to action: :show, id: @project.id
   end
   
   def products

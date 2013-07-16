@@ -3,7 +3,12 @@ Artisania::Application.routes.draw do
   root :to => "projects#index"
 
 
-  resources :palettes
+  resources :palettes do
+    member do
+      get :alt_show
+    end
+  end
+  
   resources :attribute_layers
   resources :attributes
   resources :design_versions

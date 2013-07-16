@@ -1,59 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<!--       <div class="row span12 bordered" id="design">
-        <div class="span2" id="pallete">
-          <%= @palette.name %>
-
-          <div class="menu_ bordered">
-
-            <%= select_tag :palette, options_from_collection_for_select(@attribute_layers, :id, :name), include_blank: true, id: 'attr-layer-select' %>
-    
-              <% @attributes.each do |attribute| %>
-              <%= image_tag attribute.attr_img.url(:thumb), class: "#{attribute.attribute_layer.id} attr_" %>
-              <% end %>
-
-          </div>
-        </div>
-
-
-        <div class="span9" id="canvas_container_">
-          <%= link_to 'New Attribute', new_attribute_path %>
-          <br />
-          <%= link_to 'New AttributeLayer', new_attribute_layer_path %>
-
-        </div>
-      </div> <!-- /row -->
-
-<style>
-#canvas_container_ {
-    min-height: 700px;
-    border: inherit;
-    width: 700px;
-}
-</style>
-
- <script>
-
-//     $("#attr-layer-select").on("change", function() {
-//         // var self = $("#attr-layer-select");
-//         console.log("here");
-//         console.log(this.options[this.selectedIndex].value);
-//         var class_val = this.options[this.selectedIndex].value;
-//         var all_elements = $(".attr_");
-//         console.log(all_elements);
-//         all_elements.hide();
-//         var sel_elements = $("."+class_val);
-//         sel_elements.show();
-//         console.log(sel_elements);
-
-//     });
-
-// </script>
-
-<p id="notice"><%= notice %></p>
-
 
 <h3> <%= @palette.name %> </h3>
+<%= link_to 'Alt View', alt_show_palette_path, params: {alt: true} %>
+
+ </br>
 <%= link_to 'Edit Palette', edit_palette_path(@palette) %> |
 <%= link_to 'Back', palettes_path %>
 
