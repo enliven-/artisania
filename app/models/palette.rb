@@ -10,7 +10,7 @@ class Palette < ActiveRecord::Base
 
   has_many :attribute_layers
   
-  # has_many :attributes, :through => :attribute_layers
+  # has_many :palette_attributes, :through => :attribute_layers
   accepts_nested_attributes_for :attribute_layers
 
 end

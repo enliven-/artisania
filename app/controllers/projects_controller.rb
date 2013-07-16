@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @palette = @project.palettes.build
     @al = @palette.attribute_layers.build
-    @attribute = @al.attributes.build
+    @attribute = @al.palette_attributes.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
