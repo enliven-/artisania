@@ -7,10 +7,10 @@ ActionMailer::Base.smtp_settings = {
   address: "smtp.gmail.com",
   port: 587,
   domain: "gmail.com",
-  user_name:            'viksit@msn.com',
-  password:             'aishwarya',
+  user_name:            'artisania.help@gmail.com',
+  password:             'artisaniahelp',
   authentication: "plain",
   enable_starttls_auto: true
 }
 
-ActionMailer::Base.default_url_options[:host] = "http://artisania.herokuapp.com/"
+ActionMailer::Base.default_url_options[:host] = "http://artisania.herokuapp.com"
