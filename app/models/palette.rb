@@ -1,6 +1,6 @@
 class Palette < ActiveRecord::Base
   
-  attr_accessible :name, :attribute_layers_attributes
+  attr_accessible :name, :project_id, :user_id, :attribute_layers_attributes
 
   validates :name, :presence  => true
 

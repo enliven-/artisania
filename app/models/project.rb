@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :name, :description, :img_file, :palettes_attributes
+  attr_accessible :name, :description, :img_file, :product_category_id,
+                  :show_in_catalog, :palettes_attributes
   has_attached_file :img_file, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   
   validates :name, :presence  => true

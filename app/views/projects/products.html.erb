@@ -1,1 +1,35 @@
-<%= render 'products' %>
+<h3>Listing Products</h3>
+
+<table class="table table-bordered table-striped table-hover" id="projects-index" style="width: 1000px;">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Product Category</th>
+      <th>Description</th>
+      <% if current_user.customer? %> <th>Created by</th> <% end %>
+      <th></th>
+      <th></th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= project.product_category.name %></td>
+        <td><%= project.description %></td>
+        <% if current_user.customer? %> 
+        <td> <%= project.user.email %></td>
+        <td><%= link_to 'Show', project %></td>
+        <% else %>
+        <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Remove from Catalog', show_product_in_catalog_projects_path(id: project.id) %></td>
+        <% end %>
+        <td><%= link_to 'Design', duplicate_project_path(id: project.id) %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

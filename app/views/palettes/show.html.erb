@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-      <div class="row span12 bordered" id="design">
+<!--       <div class="row span12 bordered" id="design">
         <div class="span2" id="pallete">
           <%= @palette.name %>
 
@@ -27,28 +27,66 @@
 <style>
 #canvas_container_ {
     min-height: 700px;
-    /*border: inherit;*/
+    border: inherit;
     width: 700px;
 }
 </style>
 
-<script>
+ <script>
 
-    $("#attr-layer-select").on("change", function() {
-        // var self = $("#attr-layer-select");
-        console.log("here");
-        console.log(this.options[this.selectedIndex].value);
-        var class_val = this.options[this.selectedIndex].value;
-        var all_elements = $(".attr_");
-        console.log(all_elements);
-        all_elements.hide();
-        var sel_elements = $("."+class_val);
-        sel_elements.show();
-        console.log(sel_elements);
+//     $("#attr-layer-select").on("change", function() {
+//         // var self = $("#attr-layer-select");
+//         console.log("here");
+//         console.log(this.options[this.selectedIndex].value);
+//         var class_val = this.options[this.selectedIndex].value;
+//         var all_elements = $(".attr_");
+//         console.log(all_elements);
+//         all_elements.hide();
+//         var sel_elements = $("."+class_val);
+//         sel_elements.show();
+//         console.log(sel_elements);
 
-    });
+//     });
 
-</script>
+// </script>
 
-<%= link_to 'Edit', edit_palette_path(@palette) %> |
+<p id="notice"><%= notice %></p>
+
+
+<h3> <%= @palette.name %> </h3>
+<%= link_to 'Edit Palette', edit_palette_path(@palette) %> |
 <%= link_to 'Back', palettes_path %>
+
+</br> </br>
+</br> </br>
+
+
+<% @attribute_layers.each do |attribute_layer| %>
+
+<h4 style="display: inline;"><%= attribute_layer.name %></h4>
+<%= link_to 'Edit Layer', edit_attribute_layer_path(attribute_layer) %>
+
+</br> </br>
+
+<!-- <%= link_to 'Show', attribute_layer_path %> -->
+<table class="table table-bordered table-striped table-hover" id="projects-index" style="width: 1000px;">
+  <tr>
+    <th>Attribute Name</th>
+    <th>Attr img</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% attribute_layer.attributes.each do |attribute| %>
+  <tr>
+    <td><%= attribute.name %></td>
+    <td><%= image_tag attribute.attr_img.url(:thumb) %></td>
+    <!-- <td><%= link_to 'Show', attribute %></td> -->
+    <td><%= link_to 'Edit', edit_attribute_path(attribute) %></td>
+    <td><%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<% end %>

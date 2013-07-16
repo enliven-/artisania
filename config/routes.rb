@@ -16,13 +16,15 @@ Artisania::Application.routes.draw do
     member do
       get  :design
       post :send_invitation
-      get :duplicate
+      get  :duplicate
     end
     collection do
       get :products_by_category
       get :products_by_artisan
       get :products
       get :customer_projects
+      get :show_product_in_catalog
+
     end
   end
   # The priority is based upon order of creation:

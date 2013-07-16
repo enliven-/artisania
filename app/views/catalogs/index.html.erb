@@ -1,4 +1,4 @@
-<h1>Listing catalogs</h1>
+
 
 <table>
   <tr>
@@ -6,6 +6,7 @@
     <th></th>
     <th></th>
   </tr>
+<% if current_user.artisan? %>
 
 <% @catalogs.each do |catalog| %>
   <tr>
@@ -19,3 +20,15 @@
 <br />
 
 <%= link_to 'New Catalog', new_catalog_path %>
+
+<% else %>
+
+<% @users.each do |user| %>
+  <tr>
+    <td> <%= user.email %>: <%= link_to 'catalog', products_by_artisan_projects_path(user_id: user.id) %></td>
+  </tr>
+<% end %>
+
+<% end %>
+
+

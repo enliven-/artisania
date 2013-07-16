@@ -3,19 +3,13 @@
 <h4><%=@project.name=%></h4>
 <table class="project table table-bordered table-striped table-hover">
     <tr>
-        <td>Project ID: </td><td><%=@project.id=%></td>
-    </tr>  
-    <tr>
         <td>Project Description:</td> <td><%=@project.description=%></td>
-    </tr>
-<!--     <tr>
-       <td><%#= "#{current_user.role}" %> :</td> <td><%#=current_user.name %></td>
-    </tr> -->
-    <tr>
-        <td>Last Updated At:</td> <td><%=@project.updated_at=%>
     </tr>
     <tr>
         <td>Created At:</td> <td><%=@project.created_at=%></td>
+    </tr>
+    <tr>
+        <td>Last Updated At:</td> <td><%=@project.updated_at=%>
     </tr>
     <% if current_user.customer? %>
     <tr>
@@ -24,10 +18,13 @@
     <% end %>
 </table>
 
+<%= image_tag @project.img_file.url %>
+
+<% if current_user.artisan? %>
 
 <h4>Palettes associated with this Project</h4>
 
-<table>
+<table class="project table table-bordered table-striped table-hover">
   <tr>
     <th>Name</th>
     <th>Link</th>
@@ -52,3 +49,5 @@ tr td, tr th{
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<% end %>

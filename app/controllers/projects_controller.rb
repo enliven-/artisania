@@ -45,18 +45,12 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user = current_user
-    @palette = Palette.new(params[:palette])
-    puts "------------------------------"
-    p params
-    puts "------------------------------"
-    
-      if @project.save
-        @palette.user_id = current_user.id
-        @palette.save
-        redirect_to project_path(@project)
-      else
-        render action: "new"
-      end
+
+    if @project.save
+      redirect_to project_path(@project)
+    else
+      render action: :edit, id: @project.id
+    end
   end
 
   # PUT /projects/1
@@ -113,13 +107,17 @@ class ProjectsController < ApplicationController
   
   def products_by_artisan
     @projects = Project.where(user_id: params[:user_id], show_in_catalog: true)
+    render 'products'
   end
   
   def duplicate
-    @project.find(params[:id])
-    @project.duplicate!
-    @project.update_attribute :customer_id, current_user.id
-    render action: 'edit'
+    project = Project.find(params[:id])
+    new_project = project
+    # new_project = Project.new(project)
+    new_project.update_attribute :customer_id, current_user.id
+    new_project.save
+
+    redirect_to action: :design, id: new_project.id
   end
   
   def products
@@ -128,6 +126,13 @@ class ProjectsController < ApplicationController
   
   def customer_projects
     @projects = Project.where(customer_id: params[:customer_id])
+  end
+
+  def show_product_in_catalog
+    project = Project.find(params[:id])
+    project.show_in_catalog = false
+    project.save
+    redirect_to action: :products_by_artisan, user_id: current_user.id
   end
 
 end

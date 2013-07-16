@@ -2,7 +2,7 @@ class CatalogsController < ApplicationController
   # GET /catalogs
   # GET /catalogs.json
   def index
-    @catalogs = Catalog.all
+    @users = User.all.select {|u| u.artisan? }
 
     respond_to do |format|
       format.html # index.html.erb
