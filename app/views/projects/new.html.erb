@@ -7,6 +7,8 @@
 <script>
   $(document).ready(function() {
 
+  	$("#create-project").hide();
+
     var attr_layer = $('#attr-layer-old').html();
     $('#attr-layer-old').remove();
     $("#attr-layer").html(attr_layer);
@@ -14,6 +16,13 @@
     var add_attr_layer = $('#add-attr-layer-old').html();
     $('#add-attr-layer-old').remove();
     $('#add-attr-layer').html(add_attr_layer);
+
+    $("#_atr_").on("click", function(e) {
+    	e.preventDefault();
+    	console.log("clicked__");
+  		$("#create-project").show();
+
+    });
   });
 </script>
 

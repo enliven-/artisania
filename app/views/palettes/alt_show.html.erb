@@ -27,16 +27,16 @@
  <script>
 
     $("#attr-layer-select").on("change", function() {
-        // var self = $("#attr-layer-select");
-        // console.log("here");
-        // console.log(this.options[this.selectedIndex].value);
-        // var class_val = this.options[this.selectedIndex].value;
-        // var all_elements = $(".attr_");
-        // console.log(all_elements);
-        // all_elements.hide();
-        // var sel_elements = $("."+class_val);
-        // sel_elements.show();
-        // console.log(sel_elements);
+        var self = $("#attr-layer-select");
+        console.log("here");
+        console.log(this.options[this.selectedIndex].value);
+        var class_val = this.options[this.selectedIndex].value;
+        var all_elements = $(".attr_");
+        console.log(all_elements);
+        all_elements.hide();
+        var sel_elements = $("."+class_val);
+        sel_elements.show();
+        console.log(sel_elements);
 
     });
 

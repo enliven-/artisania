@@ -1,10 +1,11 @@
-<h3>Listing palettes for <%#= current_user.name %> </h3>
+<h3>Listing Palettes <%#= current_user.name %> </h3>
 
 <table class="projects-table table table-bordered table-striped table-hover" id="projects-index" style="width: 1000px;">
   <tr>
     <th>Palette Name</th>
     <th>Product Category</th>
     <th>Project</th>
+    <th>Project ID</th>
     <th>Actions</th>
   </tr>
  
@@ -13,6 +14,7 @@
     <td><%= palette.name %></td>
     <td><%= palette.project.product_category.name %></td>
     <td><%= palette.project.name %></td>
+    <td><%= palette.project.id %></td>
     <td><%= link_to 'Show', palette %></td>
     <td><%= link_to 'Edit', edit_palette_path(palette) %></td>
     <td><%= link_to 'Remove', palette, :confirm => 'Are you sure?', :method => :delete %></td>
