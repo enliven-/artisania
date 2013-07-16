@@ -13,6 +13,9 @@ group :production do
   gem 'pg'
 end
 
+# for deep copy
+gem 'amoeba'
+
 gem 'simple_form'
 gem 'slim'
 gem 'slim-rails', :require => false

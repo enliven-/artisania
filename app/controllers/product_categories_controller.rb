@@ -23,6 +23,7 @@ class ProductCategoriesController < ApplicationController
   # GET /product_categories/new
   # GET /product_categories/new.json
   def new
+    session[:return_to] = request.referer
     @product_category = ProductCategory.new
     respond_to do |format|
       format.html # new.html.erb
@@ -38,8 +39,6 @@ class ProductCategoriesController < ApplicationController
   # POST /product_categories
   # POST /product_categories.json
   def create
-
-    session[:return_to] ||= request.referer
     @product_category = ProductCategory.new(params[:product_category])
     @product_category.save
     redirect_to session[:return_to]

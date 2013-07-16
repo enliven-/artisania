@@ -3,11 +3,12 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   before_filter :authenticate_user!
   def index
-    @projects = Project.where("user_id =?", current_user.id)
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
+    if current_user.artisan?
+      @projects = Project.where("user_id =?", current_user.id)
+      render 'artisan_index'
+    elsif current_user.customer?
+      @projects = Project.where(customer_id: current_user.id)
+      render 'customer_index'
     end
   end
 
@@ -112,12 +113,12 @@ class ProjectsController < ApplicationController
   
   def duplicate
     project = Project.find(params[:id])
-    new_project = project
-    # new_project = Project.new(project)
-    new_project.update_attribute :customer_id, current_user.id
-    new_project.save
+    @project = project.amoeba_dup
+    @project.update_attributes(customer_id: current_user.id, show_in_catalog: false)
+    @project.save
+    # render action: 'edit'
 
-    redirect_to action: :design, id: new_project.id
+    redirect_to action: :design, id: @project.id
   end
   
   def products

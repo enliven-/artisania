@@ -1,0 +1,40 @@
+<h3>Listing projects</h3>
+
+<table class="table table-bordered table-striped table-hover" id="projects-index" style="width: 1000px;">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Customer</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= project.description %></td>
+        <td><%= project.customer %></td>
+        <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<% if current_user.artisan? %> 
+<%= link_to 'New Project', new_project_path %>
+<% end %>
+
+<style>
+table td {
+  min-width: 100px;
+}
+
+#projects-index {
+  width: 600px;
+}
+</style>
