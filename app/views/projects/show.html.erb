@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h4><%=@project.name=%></h4>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
+
+</br></br>
 <table class="project table table-bordered table-striped table-hover">
     <tr>
         <td>Project Description:</td> <td><%=@project.description=%></td>
+    </tr>
+    <tr>
+        <td>Owner Artisan</td> <td><%=@project.user.email=%>
     </tr>
     <tr>
         <td>Created At:</td> <td><%=@project.created_at=%></td>
@@ -13,12 +20,16 @@
     </tr>
     <% if current_user.customer? %>
     <tr>
-        <td>Send Invite: </td> <td><%= link_to "Send Invitation to #{@project.user.email}" , send_invitation_project_path(@project), method: :post %></td>
+        <td>Actions: </td> <td><%= link_to 'Work on design', design_project_path(id: @project.id) %></td>
+    </tr>
+    <tr>
+        <td></td> <td><%= link_to "Send Invite to artisan" , send_invitation_project_path(@project), method: :post %></td>
     </tr>
     <% end %>
 </table>
 
-<%= image_tag @project.img_file.url %>
+
+</br>
 
 <% if current_user.artisan? %>
 
@@ -35,19 +46,12 @@
     </tr>
   <% end %>
 </table>
-
-
-
-<style>
-tr td, tr th{
-    min-width: 150px;
-    padding: 2px;
-    text-align: left;
-}
-</style>
-
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
-
 <% end %>
+
+<div class="row span8 bordered" style=" display: block;">
+<%= image_tag @project.img_file.url %>
+</div>
+
+
+
+

@@ -1,19 +1,18 @@
 <h3>Listing palettes for <%#= current_user.name %> </h3>
 
-<table class="projects-table">
+<table class="projects-table table table-bordered table-striped table-hover" id="projects-index" style="width: 1000px;">
   <tr>
     <th>Palette Name</th>
     <th>Product Category</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Project</th>
+    <th>Actions</th>
   </tr>
  
 <% @palettes.each do |palette| %>
   <tr>
     <td><%= palette.name %></td>
     <td><%= palette.project.product_category.name %></td>
-
+    <td><%= palette.project.name %></td>
     <td><%= link_to 'Show', palette %></td>
     <td><%= link_to 'Edit', edit_palette_path(palette) %></td>
     <td><%= link_to 'Remove', palette, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -23,12 +22,3 @@
 
 <br />
 <%= link_to 'New Palette', new_palette_path %>
-
-
-
-
-<style>
-.projects-table tr td{
-    padding: 15px;
-}
-</style>
