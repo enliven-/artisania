@@ -3,7 +3,17 @@
 
   <div class="form-inputs">
 	  <%= f.input :name, label: "Palette Name" %>
+	  
+	  
+      <div id="attr-layer-old">
+          <%= f.simple_fields_for :attribute_layers do |al_form| %>
+              <%= render 'attribute_layer_fields', f: al_form %>
+          <% end %>
+      </div>
+	  
   </div>
+  
+  
 
   <div class="form-actions">
     <%= f.button :submit, "Save and continue" %>

@@ -63,8 +63,6 @@ customer can only see products. once he starts editing, it becomes a new project
 
 allow product category to take input via regular box, right there during the process
 
-when we create project via the big form,
-    the following associations dont happen , palette.project_id; attribute_layer.palette_id, attribute.attribute_layer_id
 
 update palette, has no form for attribute layers 
 update attribute layer gives errors

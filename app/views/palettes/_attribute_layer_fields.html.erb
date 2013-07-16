@@ -1,0 +1,7 @@
+<%= f.input :name, label: "Attribute Layer Name" %>
+
+<%= f.simple_fields_for :attributes do |attr_form| %>
+	<%= render 'attribute_fields', f: attr_form %>
+<% end %>
+
+<div><%= link_to_add_fields "Add Attribute", f, :attributes %></div><br>

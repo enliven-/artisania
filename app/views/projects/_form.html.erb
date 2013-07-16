@@ -25,9 +25,8 @@
 
     <div class="tab-pane" id="palette">
         <%= f.simple_fields_for :palettes do |palette_form| %>
-          <%= render 'palette_fields', f: palette_form %>
+          <%= render 'projects/palette_fields', f: palette_form %>
         <% end %>
-
     </div>
 
     <div class="tab-pane" id="attr-layer">

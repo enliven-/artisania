@@ -37,6 +37,8 @@ class PalettesController < ApplicationController
   # GET /palettes/1/edit
   def edit
     @palette = Palette.find(params[:id])
+    @al = @palette.attribute_layers.build
+    @attribute = @al.attributes.build
   end
 
   # POST /palettes
