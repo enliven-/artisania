@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130714103735) do
     t.text     "description"
     t.integer  "user_id"
     t.integer  "design_versions_count", :default => 0
+    t.integer  "parent_project_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
     t.string   "img_file_file_name"

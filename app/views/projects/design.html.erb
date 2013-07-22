@@ -9,7 +9,7 @@
               
             
                 <!-- TODO: VIKSIT - Loopover the attributes we get from above selection: JS -->
-            <%= select_tag :palette, options_from_collection_for_select(@attribute_layers, :id, :label), include_blank: false, id: 'attr-select' %>
+            <%= select_tag :palette, options_from_collection_for_select(@attribute_layers, :id, :name), include_blank: false, id: 'attr-select' %>
                 
             <div id="choice1" class="choice">
               <img src="/pictures/Patterns/pattern1.jpg" _width="90px" class="attr">

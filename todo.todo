@@ -1,5 +1,3 @@
-x remove cocoon and do the add partial via nested_form tut video
-x user authentication with customer, and artisan both side
 
 scenario: 
     msg to be sent, to invite some one. a customer looks at the catalogue, selects a product, starts to edit it - (it becomes a project from customer side), makes changes, and sends an invite to an artisan
@@ -50,7 +48,7 @@ project/show
 new project to allow new category in place
 
 
--------------------------------- bhushan -----------------------------------
+-------------------------------- -----------------------------------
 
 customer navbar:
     catalogs (artisans), products (artisans), projects (customer)
@@ -65,4 +63,12 @@ allow product category to take input via regular box, right there during the pro
 
 
 update palette, has no form for attribute layers 
+
 update attribute layer gives errors
+
+
+
+
+----------------------------------- final tasks ------------------------------
+forgot password email step complete
+if you update project, it should not lose img or anything else

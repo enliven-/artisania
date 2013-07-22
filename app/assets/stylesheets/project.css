@@ -153,3 +153,8 @@ textarea, input {
     height: 40px;
     width: 40px;
 }
+
+
+body {
+    padding-bottom: 10px;
+}

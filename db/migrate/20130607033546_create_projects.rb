@@ -5,6 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.text         :description
       t.integer      :user_id
       t.integer      :design_versions_count, :default => 0
+      t.integer      :parent_project_id
 
 
       t.timestamps
