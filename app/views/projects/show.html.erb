@@ -50,10 +50,38 @@
 </table>
 <% end %>
 
-<div class="row span8 bordered" style=" display: block;">
-<%= image_tag @project.img_file.url %>
+
+
+<div id="canvas_container">
+    <div id="canvas"></div>
 </div>
 
+<style>
+#canvas {
+  background-image: url(<%= @project.img_file.url %>);
+  background-repeat:no-repeat;
+  width: 500px;
+  height: 500px;
+  background-size: 500px 500px;
+}
+</style>
+
+<script>
+    var id = <%= @project.id %>
+    $(document).ready(function() {
+        var params = { 'id' : id };
+        $.ajax({
+            type: 'GET',
+            url: '/design_versions/',
+            data: params,
+            success: function(data) {
+                console.log(data);
+                $("#canvas_container").html(data);
+            }
+        });
+    });
+</script>
 
 
 
+;

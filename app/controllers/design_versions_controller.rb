@@ -17,7 +17,9 @@ class DesignVersionsController < ApplicationController
     elsif params[:prev]
       @design_version = get_prev_version
     elsif params[:next]
-      @design_version = get_prev_version
+      @design_version = get_next_version
+    elsif params[:id]
+      @design_version = Project.find(params[:id]).design_versions.last
     else
       @design_version = get_latest_version
     end
@@ -118,7 +120,7 @@ class DesignVersionsController < ApplicationController
     
     session[:counter] = current_counter
     puts current_counter
-    @design_version = design_versions[current_counter-1]
+    @design_version = design_versions[current_counter]
   end
 
 
@@ -138,7 +140,7 @@ class DesignVersionsController < ApplicationController
   def get_latest_version
     project_id      = session[:project_id]
     design_versions = Project.find(project_id).design_versions
-    session[:counter] = design_versions.size
+    session[:counter] = design_versions.size-1
     @design_version = design_versions.last
   end
 
