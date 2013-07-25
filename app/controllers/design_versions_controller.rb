@@ -69,14 +69,10 @@ class DesignVersionsController < ApplicationController
   #   end
   # end
   def create
-    puts "----------------------------------------"
-    p params[:design_html]
-    puts "----------------------------------------"
 
     @design_version = DesignVersion.new(:design_html => params[:design_html])
     @design_version.project_id = session[:project_id]
     if @design_version.save
-      # session[:counter] = Project.find(session[:project_id]).design_versions.all.size + 1
       design_versions = DesignVersion.where("project_id=?", @design_version.project_id)
       session[:counter] = design_versions.all.size + 1
       render text: @design_version.design_html

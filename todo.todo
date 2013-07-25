@@ -75,3 +75,5 @@ if you update project, it should not lose img or anything else
 
 in customer: rather than just products, have products sorted by category
 make and allow customer to change certain details of project when or after cloning
+
+remove project destroy from artisan side if cloned project
