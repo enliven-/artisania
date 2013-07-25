@@ -37,10 +37,10 @@ textarea, input {
     /*border: 1px solid gray;*/
     /*position: relative;*/
     /*left: 100px;*/
-    width: 300px;
-    height: 300px;
-/*    background-image: url("/tshirt.jpg");
-    background-size: 300px 300px;*/
+    /*width: 300px;*/
+    /*height: 300px;*/
+    /*background-image: url("/tshirt.jpg");*/
+    /*background-size: 300px 300px;*/
 }
 
 
@@ -86,11 +86,11 @@ textarea, input {
     display: none;
 }
 
-.menu_ {
+.menu {
     min-height: 500px;
 }
 
-.menu_ select {
+.menu select {
     width: 274px;
 }
 
@@ -157,4 +157,8 @@ textarea, input {
 
 body {
     padding-bottom: 10px;
+}
+
+.txt {
+    width: 200px;
 }

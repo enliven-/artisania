@@ -17,21 +17,21 @@
 
 
         <div id="controls">
-          <button class="btn pull-left" id="save">Save</button>
-          <button class="btn pull-left" id="restore">Restore</button>
-          <button class="btn pull-left" id="prev-version">Previous Version</button>
-          <button class="btn pull-left" id="next-version">Next Version</button>
+          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="prev-version">Prev Version</button>
+          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="next-version">Next Version</button>
+          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="reset">Reset</button>
+          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="save">Save</button>
+          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="restore">Restore</button>
         </div>
 
 <!--         <div id="wrapper_container">
           <div class="span8 unselectable" id="canvas_container"> -->
         
-        <div id="span7 pull-right wrapper_container">
+        <div class="span7" id="wrapper_container" style="padding-top: 13px;">
           <div class="unselectable" id="canvas_container">
 
-            <button class="btn pull-left" id="reset">Reset</button>
-            <button class="btn pull-left" id="remove-img">Remove Image</button>
-            <button class="btn pull-left" id="switch">Switch User</button>
+            <button class="btn btn-info" style="border: 3px;" id="remove-img">Remove Image</button>
+            <button class="btn btn-info" style="border: 3px;" id="switch">Switch User</button>
 
             <canvas id="canvas"></canvas>
             <div id="wPaint"></div>
@@ -50,17 +50,12 @@ $(document).ready(function() {
 
     var contained;
 
-    // $("#canvas_container").on("click", function() {
-    //     console.log("clicked");
-    // });
-
-
     $("#save").click(function(event) {
         contained =  $("#canvas_container").clone().html();
         var params = { 'design_html' : contained };
         $.ajax({
             type: 'POST',
-            url: '/design_versions/',
+            url: '/design_versions',
             data: params,
             success: function(data) {
                 $("#canvas_container").html("");
@@ -142,7 +137,7 @@ $(document).ready(function() {
     var count = 1;
     var user  = "Customer";
 
-    $(".attr").draggable({
+    $(".attr_").draggable({
         helper: "clone"
     });
 
@@ -159,7 +154,6 @@ $(document).ready(function() {
 
     $("#canvas_container").on("dblclick", "#canvas", function(event) {
         
-        console.log("clicked");
         var new_pin = make_new_pin(count);
         $("#canvas_container").append(new_pin);
 
@@ -167,9 +161,7 @@ $(document).ready(function() {
         $("#canvas_container").append(new_commentbox);
         make_textarea_droppable(new_commentbox);
 
-
         count+=1;
-
     });
 
 
@@ -203,11 +195,19 @@ $(document).ready(function() {
         minimize_obj($(this));
     });
 
-
-    $("#canvas_container").on("click", ".maximize", function(event) {
-        maximize_obj($(this));
+    
+    $("#canvas_container").on("click", ".dropped-attr", function(event) {
+        var img = $(event.target);
+        $(".selected-pin").removeClass("selected-pin");
+        img.addClass("selected-pin");
+        console.log(img);
     });
 
+    $("#canvas_container").on("click", "#remove-img", function(event) {
+        var img = $(".selected-pin");
+        console.log(img);
+        $(img).remove();
+    });
     
     $("#canvas_container").on("click", ".pin", function(event) {
 
@@ -316,9 +316,9 @@ $(document).ready(function() {
         }
 
         var image = obj.clone().removeClass("attr").addClass("dropped-attr");
-        // image.draggable({
-        //     containment: $("#canvas_container")
-        // });
+        image.draggable({
+            containment: $("#canvas_container")
+        });
 
         return image;
     }
@@ -391,7 +391,10 @@ $(document).ready(function() {
 
 <style>
 #canvas {
-  background-image: url("/system/projects/img_files/000/000/005/original/11TwitterForSmallBusiness-300_1.png?1374711631");
+  background-image: url(<%= @project.img_file.url %>);
   background-repeat:no-repeat;
+  width: 500px;
+  height: 500px;
+  background-size: 500px 500px;
 }
 </style>
