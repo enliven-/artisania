@@ -4,67 +4,18 @@
         
       <div id="design-wrapper">  
         <div class="span3" id="pallete">
+          <div class="menu bordered">
 
-          <div class="menu_ bordered">
-              
-            
-                <!-- TODO: VIKSIT - Loopover the attributes we get from above selection: JS -->
-            <%= select_tag :palette, options_from_collection_for_select(@attribute_layers, :id, :name), include_blank: false, id: 'attr-select' %>
-                
-            <div id="choice1" class="choice">
-              <img src="/pictures/Patterns/pattern1.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern3.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern4.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern5.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern6.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern7.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern8.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern9.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern10.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern11.jpg" _width="90px" class="attr">
-              <img src="/pictures/Patterns/pattern12.jpg" _width="90px" class="attr">
-            </div>
-
-<!--             <div id="choice2" class="choice">
-              <img src="/pictures/Stitches/stich1.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich2.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich3.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich4.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich5.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich6.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich7.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich8.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich9.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich10.png" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich11.jpg" _width="90px" class="attr">
-              <img src="/pictures/Stitches/stich12.jpg" _width="90px" class="attr">
-            </div>
-
-            <div id="choice3" class="choice">
-              <img src="/pictures/Mirror Work/m1.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m2.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m3.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m4.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m5.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m6.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m7.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m8.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m9.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m10.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m11.jpg" _width="90px" class="attr">
-              <img src="/pictures/Mirror Work/m12.jpg" _width="90px" class="attr">
-            </div>
-
-            <div id="choice4" class="choice">
-              <img src="/pictures/Buttons/button1.jpg" _width="90px" class="attr">
-              <img src="/pictures/Buttons/button2.jpg" _width="90px" class="attr">
-              <img src="/pictures/Buttons/button3.jpg" _width="90px" class="attr">
-              <img src="/pictures/Buttons/button4.jpg" _width="90px" class="attr">
-            </div> -->
+            <%= select_tag :palette, options_from_collection_for_select(@attribute_layers, :id, :name), include_blank: true, id: 'attr-layer-select' %>
+    
+              <% @attributes.each do |attribute| %>
+              <%= image_tag attribute.attr_img.url(:thumb), class: "#{attribute.attribute_layer.id} attr_" %>
+              <% end %>
 
           </div>
-
         </div>
+
+
         <div id="controls">
           <button class="btn pull-left" id="save">Save</button>
           <button class="btn pull-left" id="restore">Restore</button>
@@ -99,9 +50,9 @@ $(document).ready(function() {
 
     var contained;
 
-    $("#canvas_container").on("click", function() {
-        console.log("clicked");
-    });
+    // $("#canvas_container").on("click", function() {
+    //     console.log("clicked");
+    // });
 
 
     $("#save").click(function(event) {
@@ -408,6 +359,24 @@ $(document).ready(function() {
         });
 
     }
+
+
+
+
+    $("#attr-layer-select").on("change", function() {
+        var self = $("#attr-layer-select");
+        console.log("here");
+        console.log(this.options[this.selectedIndex].value);
+        var class_val = this.options[this.selectedIndex].value;
+        var all_elements = $(".attr_");
+        console.log(all_elements);
+        all_elements.hide();
+        var sel_elements = $("."+class_val);
+        sel_elements.show();
+        console.log(sel_elements);
+
+    });
+
 });
   </script>
 
@@ -421,8 +390,8 @@ $(document).ready(function() {
 
 
 <style>
-#canvas_container {
-  background-image:url(/pictures/tshirt.jpg);
-  background-size: 400px 400px;
+#canvas {
+  background-image: url("/system/projects/img_files/000/000/005/original/11TwitterForSmallBusiness-300_1.png?1374711631");
+  background-repeat:no-repeat;
 }
 </style>

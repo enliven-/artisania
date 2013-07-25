@@ -96,16 +96,16 @@ class ProjectsController < ApplicationController
 
 
   def design
-    project = Project.find(params[:id])
-    design_versions = DesignVersion.where("project_id=?", project.id)
+    @project = Project.find(params[:id])
+    design_versions = DesignVersion.where("project_id=?", @project.id)
     most_rec_des_ver = design_versions.last
-    palettes = Palette.where("project_id=?", project.parent_project_id)
+    palettes = Palette.where("project_id=?", @project.parent_project_id)
     @attribute_layers = AttributeLayer.where("palette_id=?", palettes.first.id)
     @attributes = []
     @attribute_layers.each do |al|
       @attributes += Attribute.where("attribute_layer_id=?", al.id)
     end
-    session[:project_id] = project.id
+    session[:project_id] = @project.id
     render 'design'
   end
   
@@ -123,6 +123,7 @@ class ProjectsController < ApplicationController
     @project = project.amoeba_dup
     @project.update_attributes(customer_id: current_user.id, show_in_catalog: false)
     @project.parent_project_id = project.id
+    @project.img_file = project.img_file
     @project.save
     redirect_to action: :show, id: @project.id
   end

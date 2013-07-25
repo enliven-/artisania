@@ -20,13 +20,13 @@
     <tr>
         <td>Last Updated At:</td> <td><%=@project.updated_at=%>
     </tr>
-    <% if current_user.customer? %>
-    <tr>
-        <td>Actions: </td> <td><%= link_to 'Work on design', design_project_path(id: @project.id) %></td>
-    </tr>
-    <tr>
-        <td></td> <td><%= link_to "Send Invite to artisan" , send_invitation_project_path(@project), method: :post %></td>
-    </tr>
+    <% if current_user.customer? and @project.customer_id==current_user.id %>
+        <tr>
+            <td>Actions: </td> <td><%= link_to 'Work on design', design_project_path(id: @project.id) %></td>
+        </tr>
+        <tr>
+            <td></td> <td><%= link_to "Send Invite to artisan" , send_invitation_project_path(@project), method: :post %></td>
+        </tr>
     <% end %>
 </table>
 
