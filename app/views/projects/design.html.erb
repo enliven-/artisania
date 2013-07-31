@@ -1,6 +1,6 @@
 
     <div class="row span11 bordered" id="design">
-          
+                  
         
       <div id="design-wrapper">  
         <div class="span3" id="pallete">
@@ -9,7 +9,7 @@
             <%= select_tag :palette, options_from_collection_for_select(@attribute_layers, :id, :name), include_blank: true, id: 'attr-layer-select' %>
     
               <% @attributes.each do |attribute| %>
-              <%= image_tag attribute.attr_img.url(:thumb), class: "#{attribute.attribute_layer.id} attr_" %>
+              <%= image_tag attribute.attr_img.url(:thumb), class: "#{attribute.attribute_layer.id} attr" %>
               <% end %>
 
           </div>
@@ -28,13 +28,15 @@
           <div class="span8 unselectable" id="canvas_container"> -->
         
         <div class="span7" id="wrapper_container" style="padding-top: 13px;">
-          <div class="unselectable" id="canvas_container">
-
             <button class="btn btn-info" style="border: 3px;" id="remove-img">Remove Image</button>
             <button class="btn btn-info" style="border: 3px;" id="switch">Switch User</button>
+          
+            <div class="unselectable" id="canvas_container">
 
-            <canvas id="canvas"></canvas>
-            <div id="wPaint"></div>
+
+
+                <canvas id="canvas"></canvas>
+                <div id="wPaint"></div>
 
           </div>
         </div>
@@ -45,6 +47,7 @@
 
 console.log("loading projects.js");
 
+var user = "<%= current_user.email %>";
 
 $(document).ready(function() {
 
@@ -78,6 +81,7 @@ $(document).ready(function() {
                     make_textarea_droppable($(commentbox));
                 });
                 $(".dropped-attr").draggable({'containment': $("#canvas_container") });
+                $(".pin").draggable({'containment': $("#canvas_container") });
                 $("#save").removeAttr("disabled");
                 $("#canvas_container").css({'opacity' : 1});
             }
@@ -102,6 +106,8 @@ $(document).ready(function() {
                     make_textarea_droppable($(commentbox));
                 });
                 $(".dropped-attr").draggable({'containment': $("#canvas_container") });
+                $(".pin").draggable({'containment': $("#canvas_container") });
+
                 $("#save").attr("disabled", "disabled");
                 $("#canvas_container").css({'opacity' : .5});
                 // $("#controls").css({'opacity' : 1});
@@ -125,6 +131,8 @@ $(document).ready(function() {
                     make_textarea_droppable($(commentbox));
                 });
                 $(".dropped-attr").draggable({'containment': $("#canvas_container") });
+                $(".pin").draggable({'containment': $("#canvas_container") });
+
                 $("#save").attr("disabled", "disabled");
                 $("#canvas_container").css({'opacity' : .5});
                 // $("#controls").css({'opacity' : 1});
@@ -135,14 +143,13 @@ $(document).ready(function() {
 
 // --------------------------------------------------------------------------------------
     var count = 1;
-    var user  = "Customer";
 
-    $(".attr_").draggable({
+    $(".attr").draggable({
         helper: "clone"
     });
 
 
-    $("img").css({ 'opacity' : 0.7, 'zIndex': 10, 'position': 'relative' });
+    $("img").css({ 'opacity' : 0.7, 'zIndex': 10 });
 
 
     $("img").data({
@@ -370,7 +377,7 @@ $(document).ready(function() {
         console.log("here");
         console.log(this.options[this.selectedIndex].value);
         var class_val = this.options[this.selectedIndex].value;
-        var all_elements = $(".attr_");
+        var all_elements = $(".attr");
         console.log(all_elements);
         all_elements.hide();
         var sel_elements = $("."+class_val);
@@ -378,6 +385,7 @@ $(document).ready(function() {
         console.log(sel_elements);
 
     });
+    $("#attr-layer-select").val(1);
 
     $("#restore").click();
 

@@ -16,6 +16,8 @@ textarea, input {
 }
 
 #canvas_container {
+    /*position: absolute;*/
+
     /*min-height: 700px;*/
     /*border: inherit;*/
     /*width: 700px;*/
