@@ -64,28 +64,20 @@
   height: 500px;
   background-size: 500px 500px;
 }
-
-/*img {
-  position: absolute;
-}*/
 </style>
 
-<script>
-    var id = <%= @project.id %>
-    $(document).ready(function() {
-        var params = { 'id' : id };
-        $.ajax({
-            type: 'GET',
-            url: '/design_versions/',
-            data: params,
-            success: function(data) {
-                console.log(data);
-                $("#canvas_container").html(data);
-            }
-        });
-    });
-</script>
-
-
-
-;
+// <script>
+//     var id = <%= @project.id %>
+//     $(document).ready(function() {
+//         var params = { 'id' : id };
+//         $.ajax({
+//             type: 'GET',
+//             url: '/design_versions/',
+//             data: params,
+//             success: function(data) {
+//                 console.log(data);
+//                 $("#canvas_container").html(data);
+//             }
+//         });
+//     });
+// </script>

@@ -100,12 +100,14 @@ textarea, input {
     padding: 8px;
 }
 
-.customer {
+.comment.customer {
     color: darkgreen;
+    font-style: italic;
 }
 
-.artisan {
+.comment.artisan {
     color: maroon;
+    font-style: italic;
 }
 
 .comment-box {

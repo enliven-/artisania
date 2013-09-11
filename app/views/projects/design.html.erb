@@ -17,23 +17,21 @@
 
 
         <div id="controls">
-          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="prev-version">Prev Version</button>
-          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="next-version">Next Version</button>
-          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="reset">Reset</button>
-          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="save">Save</button>
-          <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="restore">Restore</button>
+            <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="prev-version">Prev Version</button>
+            <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="next-version">Next Version</button>
+            <button class="btn btn-primary" style="border: 3px;" id="remove-img">Remove Image</button>
+            <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="restore">Restore</button>
+            <button class="btn btn-primary" style="border: 0 3px 5px 0;" id="save">Save</button>
         </div>
+<!-- 
+            Update Image:
+            <%= simple_form_for @project, url_path: projects_path, html: { multipart: true } do |f| %>
+                <%= f.file_field :img_file %>
+            <% end %>
 
-<!--         <div id="wrapper_container">
-          <div class="span8 unselectable" id="canvas_container"> -->
-        
-        <div class="span7" id="wrapper_container" style="padding-top: 13px;">
-            <button class="btn btn-info" style="border: 3px;" id="remove-img">Remove Image</button>
-            <button class="btn btn-info" style="border: 3px;" id="switch">Switch User</button>
+ -->        <div class="span7" id="wrapper_container" style="padding-top: 13px;">
           
             <div class="unselectable" id="canvas_container">
-
-
 
                 <canvas id="canvas"></canvas>
                 <div id="wPaint"></div>
@@ -47,7 +45,8 @@
 
 console.log("loading projects.js");
 
-var user = "<%= current_user.email %>";
+var user = "<%= current_user.email %>".split('@')[0];
+var user_role = "<%= current_user.role %>"
 
 $(document).ready(function() {
 
@@ -193,7 +192,9 @@ $(document).ready(function() {
             var comment = $(this).val();
 
             if (comment.trim()!="") {
-                comment_history.append(user + ": " + comment + "<br />");
+                var new_comment_line = $("<span class=comment>" + user + "</span>" + ": " + comment + "<br />");
+                new_comment_line.addClass(user_role);
+                comment_history.append(new_comment_line);
             }
             $(this).val("").focus();
         }
@@ -211,9 +212,9 @@ $(document).ready(function() {
         console.log(img);
     });
 
-    $("#canvas_container").on("click", "#remove-img", function(event) {
+    $("#controls").on("click", "#remove-img", function(event) {
         var img = $(".selected-pin");
-        console.log(img);
+        if (img.hasClass("pin")) { return false; }
         $(img).remove();
     });
     
@@ -224,7 +225,6 @@ $(document).ready(function() {
         var pin = $(event.target);
         pin.addClass("selected-pin");
         pin_id = pin.attr("id");
-        console.log(pin_id);
         var commentboxes = $(".minimize");
         $.each(commentboxes, function(index, commentbox) {
             var commentbox_id = $(commentbox).closest(".comment-box").attr("id");
