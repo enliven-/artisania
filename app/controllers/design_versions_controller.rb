@@ -150,4 +150,9 @@ class DesignVersionsController < ApplicationController
     @design_version = design_versions[counter]
   end
 
+  # def background_image url
+  #   design_version = Project.find(params[:id]).design_versions.last
+    
+  # end
+
 end

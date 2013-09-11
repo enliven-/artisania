@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   
   validates :name, :presence  => true
 
-  has_many :palettes, dependent: :destroy
+  has_many :palettes
   accepts_nested_attributes_for :palettes
   
   belongs_to :user

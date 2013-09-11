@@ -99,7 +99,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     design_versions = DesignVersion.where("project_id=?", @project.id)
     most_rec_des_ver = design_versions.last
-    palettes = Palette.where("project_id=?", @project.parent_project_id)
+    if @project.parent_project_id
+      palettes = Palette.where("project_id=?", @project.parent_project_id)
+    else
+      palettes = Palette.where("project_id=?", @project.id)
+    end
     @attribute_layers = AttributeLayer.where("palette_id=?", palettes.first.id)
     @attributes = []
     @attribute_layers.each do |al|
@@ -125,6 +129,14 @@ class ProjectsController < ApplicationController
     @project.parent_project_id = project.id
     @project.img_file = project.img_file
     @project.save
+
+    design_versions = DesignVersion.where("project_id=?", project.id)
+    design_versions.each do |dv|
+      new_dv = dv.amoeba_dup
+      new_dv.project_id = @project.id
+      new_dv.save
+    end
+    
     redirect_to action: :show, id: @project.id
   end
   

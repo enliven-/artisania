@@ -1,10 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h4><%=@project.name=%></h4>
-<% if current_user.artisan? %>
- <%= link_to 'Edit', edit_project_path(@project) %> |
-<% end%>
-<%= link_to 'Back', projects_path %>
+
 
 </br></br>
 <table class="project table table-bordered table-striped table-hover">
@@ -27,6 +24,13 @@
         <tr>
             <td></td> <td><%= link_to "Send Invite to artisan" , send_invitation_project_path(@project), method: :post %></td>
         </tr>
+    <% elsif @project.customer_id==current_user.id %>
+        <tr>
+            <td>Actions: </td> <td><%= link_to 'Edit', edit_project_path(@project) %></td>
+        </tr>
+        <tr>
+            <td></td> <td><%= link_to 'Design', design_project_path(id: @project.id) %></td>
+        </tr>   
     <% end %>
 </table>
 
