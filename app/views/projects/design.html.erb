@@ -32,7 +32,8 @@
  -->        
 
     <div class="span7" id="wrapper_container" style="padding-top: 13px;">
-          
+        <div id="tools">
+        </div>
         <div class="unselectable" id="canvas_container">
             <canvas id="canvas" width="500" height="500"></canvas>
         </div>
@@ -52,10 +53,10 @@ $(document).ready(function() {
     var contained;
 
     $("#save").click(function(event) {
-        var dataURL = canvas.toDataURL();
-        document.getElementById("canvas").src = dataURL;
-        console.log("saved! - " + dataURL);
-        console.log(document.getElementById("canvas").src);
+        // var dataURL = canvas.toDataURL();
+        // document.getElementById("canvas").src = dataURL;
+        // console.log("saved! - " + dataURL);
+        // console.log(document.getElementById("canvas").src);
         contained =  $("#canvas_container").clone().html();
         var params = { 'design_html' : contained };
         $.ajax({
@@ -71,11 +72,9 @@ $(document).ready(function() {
 
 
     $("#restore").click(function(event) {
-        // $("#canvas_container").html(contained);
         $.ajax({
             type: 'GET',
             url: '/design_versions/',
-            // data: params,
             success: function(data) {
                 console.log(data);
                 $("#canvas_container").html(data);
@@ -92,7 +91,6 @@ $(document).ready(function() {
             error: function() {
                 console.log("error!");
                 $('#canvas').sketch();
-
             }
         });
     });
@@ -100,15 +98,12 @@ $(document).ready(function() {
 
 
     $("#prev-version").click(function(event) {
-        // $("#canvas_container").html(contained);
         var params = { 'prev' : true };
         $.ajax({
             type: 'GET',
             url: '/design_versions/',
             data: params,
             success: function(data) {
-                // alert("data");
-                // console.log(data);
                 $("#canvas_container").html(data);
                 var commentboxes = $(".comment-box");
                 $.each(commentboxes, function(index, commentbox) {
@@ -118,8 +113,8 @@ $(document).ready(function() {
                 $(".pin").draggable({'containment': $("#canvas_container") });
 
                 $("#save").attr("disabled", "disabled");
-                $("#canvas_container").css({'opacity' : .85});
-                // $("#controls").css({'opacity' : 1});
+                $("#canvas_container").css({'opacity' : .75});
+                $('#canvas').sketch();
 
             }
         });
@@ -132,8 +127,6 @@ $(document).ready(function() {
             url: '/design_versions/',
             data: params,
             success: function(data) {
-                // alert("data");
-                // console.log(data);
                 $("#canvas_container").html(data);
                 var commentboxes = $(".comment-box");
                 $.each(commentboxes, function(index, commentbox) {
@@ -143,8 +136,8 @@ $(document).ready(function() {
                 $(".pin").draggable({'containment': $("#canvas_container") });
 
                 $("#save").attr("disabled", "disabled");
-                $("#canvas_container").css({'opacity' : .85});
-                // $("#controls").css({'opacity' : 1});
+                $("#canvas_container").css({'opacity' : .75});
+                $('#canvas').sketch();
 
             }
         });
@@ -177,7 +170,6 @@ $(document).ready(function() {
         $("#canvas_container").append(new_commentbox);
         make_textarea_droppable(new_commentbox);
 
-        // count+=1;
     });
 
 
@@ -259,10 +251,6 @@ $(document).ready(function() {
     });
 
 
-    // $(".dropped-attr").draggable({
-    //     containment: $("#canvas_container")
-    // });
-
 // ------------------------------------------------------------------------------------------------------
     var count = 1;
     var get_count = function() {
@@ -314,10 +302,6 @@ $(document).ready(function() {
 
 
     var minimize_obj = function(obj) {
-        // var div = obj.closest(".comment-box");
-        // console.log(div);
-        // // $(div).hide();
-        // $(div).addClass("minimized");
         var div = obj.closest(".comment-box");
         var area = obj.parent().find(".txt");
         $(area).addClass("minimized");
@@ -326,9 +310,6 @@ $(document).ready(function() {
 
 
     var maximize_obj = function(obj) {
-        // var div = obj.closest(".comment-box");
-        // // $(div).show();
-        // $(div).removeClass("minimized");
         var div = obj.closest(".comment-box");
         var area = obj.parent().find(".txt");
         $(area).removeClass("minimized");
@@ -407,6 +388,21 @@ $(document).ready(function() {
 
     $("#restore").click();
 
+
+    var marker_setup = function() {
+        $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000'], function() {
+          $('#tools').append("<a href='#canvas' data-tool=marker data-color='" + this + "' style='width: 10px; background: " + this + ";'>____</a> ");
+        });
+        $.each(['#fff'], function(){
+            $('#tools').append("<a href='#canvas' data-tool=eraser style='width: 10px; background: " + this + ";'>____</a> ");
+        });
+        $.each([3, 5, 10, 15], function() {
+          $('#tools').append("<a href='#canvas' data-size='" + this + "' style='background: #ccc'>" + this + "</a> ");
+        });
+    }
+
+    marker_setup();
+
 });
   </script>
 
@@ -421,10 +417,8 @@ $(document).ready(function() {
 
 <style>
 #canvas {
-  /*background-image: url(<%= @project.img_file.url %>);*/
+  background-image: url(<%= @project.img_file.url %>);
   background-repeat:no-repeat;
-  /*width: 500px;*/
-  /*height: 500px;*/
   background-size: 500px 500px;
 }
 </style>
